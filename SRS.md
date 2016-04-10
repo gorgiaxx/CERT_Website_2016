@@ -60,26 +60,37 @@ CREATE TABLE `members` (
   `department_id` int(2) NOT NULL DEFAULT '' COMMENT '部门id',
   `position_id` int(2) NOT NULL DEFAULT '' COMMENT '职位id',
   `join_time` datetime NOT NULL DEFAULT '' COMMENT '加入时间',
-  `face_id` int(4) NOT NULL DEFAULT '' COMMENT '头像/相片id',
+  `face_id` int(4) NOT NULL DEFAULT '' COMMENT '头像id',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '个人介绍',
   `link` varchar(160) NOT NULL DEFAULT '' COMMENT '链接',
   `show_depart` bit NOT NULL DEFAULT 0 COMMENT '在部门里展示',
   `show_famehall` bit NOT NULL DEFAULT 0 COMMENT '在名人堂里展示',
-  PRIMARY KEY `id` (`members`),
-  UNIQUE KEY `student_id` (`members`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+  PRIMARY KEY `id`,
+  UNIQUE KEY `student_id`
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
 ###部门表结构
 ```SQL
 CREATE TABLE `department` (
-  `id` int(4) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
   `department_name` varchar(16) NOT NULL DEFAULT '' COMMENT '部门名',
   `brief` varchar(120) NOT NULL DEFAULT '' COMMENT '部门简介',
   `introduction` varchar(400) NOT NULL DEFAULT '' COMMENT '部门介绍',
   `background` varchar(160) NOT NULL DEFAULT '' COMMENT '部门主题背景',
-  `order` bit NOT NULL DEFAULT 1 COMMENT '部门显示顺序',
+  `order` int(2) NOT NULL DEFAULT 1 COMMENT '部门显示顺序',
   `flag` bit NOT NULL DEFAULT 1 COMMENT '部门是否运作',
-  PRIMARY KEY `uid` (`members`),
-  UNIQUE KEY `student_id` (`members`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+  PRIMARY KEY `id`
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
+
+###职位表结构
+```SQL
+CREATE TABLE `position` (
+  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+  `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
+  `weight` int(2) NOT NULL DEFAULT '' COMMENT '权重',
+  `order` int(2) NOT NULL DEFAULT 1 COMMENT '职位显示顺序',
+  `department_id` int(2) NOT NULL DEFAULT '' COMMENT '部门id',
+  PRIMARY KEY `id`
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
