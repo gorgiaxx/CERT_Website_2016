@@ -65,6 +65,8 @@ CREATE TABLE `members` (
   `link` varchar(160) NOT NULL DEFAULT '' COMMENT '链接',
   `show_depart` bit NOT NULL DEFAULT 0 COMMENT '在部门里展示',
   `show_famehall` bit NOT NULL DEFAULT 0 COMMENT '在名人堂里展示',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY `id`,
   UNIQUE KEY `student_id`
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -74,11 +76,14 @@ CREATE TABLE `members` (
 CREATE TABLE `department` (
   `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
   `department_name` varchar(16) NOT NULL DEFAULT '' COMMENT '部门名',
+  `department_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '部门英文标识',
   `brief` varchar(120) NOT NULL DEFAULT '' COMMENT '部门简介',
   `introduction` varchar(400) NOT NULL DEFAULT '' COMMENT '部门介绍',
   `background` varchar(160) NOT NULL DEFAULT '' COMMENT '部门主题背景',
   `order` int(2) NOT NULL DEFAULT 1 COMMENT '部门显示顺序',
   `flag` bit NOT NULL DEFAULT 1 COMMENT '部门是否运作',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY `id`
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
@@ -88,9 +93,41 @@ CREATE TABLE `department` (
 CREATE TABLE `position` (
   `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
   `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
+  `position_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '职位英文标识',
   `weight` int(2) NOT NULL DEFAULT '' COMMENT '权重',
   `order` int(2) NOT NULL DEFAULT 1 COMMENT '职位显示顺序',
   `department_id` int(2) NOT NULL DEFAULT '' COMMENT '部门id',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY `id`
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
+
+###团队作品表结构
+```SQL
+CREATE TABLE `product` (
+  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(16) NOT NULL DEFAULT '' COMMENT '作品名',
+  `product_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '作品英文标识',
+  `thumb_img` varchar(16) NOT NULL DEFAULT '' COMMENT '预览图',
+  `weight` int(2) NOT NULL DEFAULT '' COMMENT '权重',
+  `order` int(2) NOT NULL DEFAULT 1 COMMENT '显示顺序',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY `id`
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
+
+###管理团队表结构
+```SQL
+CREATE TABLE `team_manager` (
+  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(10) NOT NULL DEFAULT '' COMMENT '姓名',
+  `department_name` varchar(16) NOT NULL DEFAULT '' COMMENT '部门名',
+  `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
+  `generation`  int(2) NOT NULL DEFAULT '' COMMENT '届数',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY `id`
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
