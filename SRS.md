@@ -31,7 +31,11 @@
 
 ####Gorgiax设计的首页页面
 部分元素参考耶稣君的设计(东方的背景太中二，请无视，暂时没有社团照片，等我找时间去拿)
-![index](./img/index.gif)
+![index](./img/index.png)
+
+####Gorgiax设计的部门页面
+部分元素参考耶稣君的设计(东方的背景太中二，请无视，暂时没有社团照片，等我找时间去拿)
+![index](./img/department.png)
 
 ####耶稣君设计的部分页面
 ![index2](./img/index2.png)
@@ -132,7 +136,7 @@ CREATE TABLE `product` (
 
 ###管理团队表结构
 ```SQL
-CREATE TABLE `team_manager` (
+CREATE TABLE `leadership` (
   `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(10) NOT NULL DEFAULT '' COMMENT '姓名',
   `department_name` varchar(16) NOT NULL DEFAULT '' COMMENT '部门名',
