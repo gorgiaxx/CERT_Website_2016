@@ -66,6 +66,7 @@
 
 
 ##后台
+采用ThinkCMF内容管理框架。
 ###成员表结构
 ```SQL
 CREATE TABLE `members` (
@@ -142,6 +143,22 @@ CREATE TABLE `leadership` (
   `department_name` varchar(16) NOT NULL DEFAULT '' COMMENT '部门名',
   `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
   `generation`  int(2) NOT NULL DEFAULT '' COMMENT '届数',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY `id`
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
+
+###新人报名表
+```SQL
+CREATE TABLE `application` (
+  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(16) NOT NULL DEFAULT '' COMMENT '学号',
+  `username` varchar(10) NOT NULL DEFAULT '' COMMENT '姓名',
+  `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
+  `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '自我介绍',
+  `department_id` int(2) NOT NULL DEFAULT '' COMMENT '意向部门id',
+  `pass` bit NOT NULL DEFAULT 0 COMMENT '是否通过',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY `id`
