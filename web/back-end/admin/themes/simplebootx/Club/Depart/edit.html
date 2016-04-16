@@ -1,0 +1,74 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+	<ul class="nav nav-tabs">
+		<li>
+			<a href="{:U('Depart/index')}">部门管理</a>
+		</li>
+		<li class="active">
+			<a href="#">编辑部门</a>
+		</li>
+	</ul>
+	<form method="post" class="form-horizontal js-ajax-form" action="{:U('Depart/update')}">
+            	<input type="hidden" name="id" value="{$id}">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label">部门名</label>
+				<div class="controls">
+					<input type="text" name="department_name" value="{$department.department_name}">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门英文标识</label>
+				<div class="controls">
+					<input type="text" name="department_name_en" value="{$department.department_name_en}">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门简介</label>
+				<div class="controls">
+					<input type="text" name="brief" value="{$department.brief}">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门详介</label>
+				<div class="controls">
+					<textarea name="introduction" id="" cols="30" rows="10">{$department.introduction}</textarea>
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门主题背景</label>
+				<div class="controls">
+					<input type="text" name="background" value="{$department.background}"></div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">显示顺序</label>
+				<div class="controls">
+					<input type="text" name="order" value="{$department.order}"></div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">是否启用</label>
+				<div class="controls">
+					<td>
+						<label class="radio">
+							<input type="radio" name="flag" value="1" <if condition="($department.flag eq 1)">checked</if>>启用</label>
+						<label class="radio">
+							<input type="radio" name="flag" value="0" <if condition="($department.flag eq 0)">checked</if>>停止</label>
+					</td>
+				</div>
+			</div>
+		</fieldset>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+			<a class="btn" href="{:U('Depart/index')}">{:L('BACK')}</a>
+		</div>
+	</form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

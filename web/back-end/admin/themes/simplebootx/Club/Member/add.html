@@ -1,0 +1,81 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Member/index')}">成员管理</a></li>
+			<li class="active"><a href="{:U('Member/add')}">添加成员</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Member/add_member')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">学号</label>
+					<div class="controls">
+						<input type="text" name="user_login">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">姓名</label>
+					<div class="controls">
+						<input type="password" name="user_pass">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">班级</label>
+					<div class="controls">
+						<input type="text" name="user_email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">部门</label>
+					<div class="controls">
+						<input type="text" name="user_email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">职位</label>
+					<div class="controls">
+						<input type="text" name="user_email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">加入时间</label>
+					<div class="controls">
+						<input type="text" name="user_email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">在部门里展示</label>
+					<div class="controls">
+						<input type="text" name="user_email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">在名人堂里展示</label>
+					<div class="controls">
+						<input type="text" name="user_email">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">个人介绍</label>
+					<div class="controls">
+						<textarea name="user_email">
+						</textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">头像id</label>
+					<div class="controls">
+						<input type="text" name="user_email">
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="{:U('user/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

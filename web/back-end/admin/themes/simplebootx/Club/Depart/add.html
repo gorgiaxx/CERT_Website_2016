@@ -1,0 +1,73 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+	<ul class="nav nav-tabs">
+		<li>
+			<a href="{:U('Depart/index')}">部门管理</a>
+		</li>
+		<li class="active">
+			<a href="{:U('Depart/add')}">添加部门</a>
+		</li>
+	</ul>
+	<form method="post" class="form-horizontal js-ajax-form" action="{:U('Depart/add_post')}">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label">部门名</label>
+				<div class="controls">
+					<input type="text" name="department_name">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门英文标识</label>
+				<div class="controls">
+					<input type="text" name="department_name_en">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门简介</label>
+				<div class="controls">
+					<input type="text" name="brief">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门详介</label>
+				<div class="controls">
+					<textarea name="introduction" id="" cols="30" rows="10"></textarea>
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">部门主题背景</label>
+				<div class="controls">
+					<input type="text" name="background"></div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">显示顺序</label>
+				<div class="controls">
+					<input type="text" name="order" value="0"></div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">是否启用</label>
+				<div class="controls">
+					<td>
+						<label class="radio">
+							<input type="radio" name="flag" value="1" checked>启用</label>
+						<label class="radio">
+							<input type="radio" name="flag" value="0">停止</label>
+					</td>
+				</div>
+			</div>
+		</fieldset>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+			<a class="btn" href="{:U('Depart/index')}">{:L('BACK')}</a>
+		</div>
+	</form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

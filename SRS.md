@@ -61,7 +61,8 @@
 
 ###关于我们
 先是简介，向下滚动出现管理团队，管理团队由左边的标签来分页，内容由后台生成。  
-再向下滚动出现加入我们的页面，几句要求，一个按钮，一幅背景图。
+再向下滚动出现加入我们的页面，几句要求，一个按钮，一幅背景图。s+
+
 最后是联系我们的页面，负责人E-Mail，地址，电话，负责老师，地图。
 
 
@@ -69,98 +70,98 @@
 采用ThinkCMF内容管理框架。
 ###成员表结构
 ```SQL
-CREATE TABLE `members` (
+CREATE TABLE `cmf_members` (
   `id` int(4) unsigned NOT NULL AUTO_INCREMENT,
   `student_id` varchar(16) NOT NULL DEFAULT '' COMMENT '学号',
   `username` varchar(10) NOT NULL DEFAULT '' COMMENT '姓名',
   `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
-  `department_id` int(2) NOT NULL DEFAULT '' COMMENT '部门id',
-  `position_id` int(2) NOT NULL DEFAULT '' COMMENT '职位id',
-  `join_time` datetime NOT NULL DEFAULT '' COMMENT '加入时间',
-  `face_id` int(4) NOT NULL DEFAULT '' COMMENT '头像id',
+  `department_id` tinyint(2) NOT NULL COMMENT '部门id',
+  `position_id` tinyint(2) NOT NULL COMMENT '职位id',
+  `join_time` datetime NOT NULL COMMENT '加入时间',
+  `face_id` int(4) NOT NULL COMMENT '头像id',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '个人介绍',
   `link` varchar(160) NOT NULL DEFAULT '' COMMENT '链接',
-  `show_depart` bit NOT NULL DEFAULT 0 COMMENT '在部门里展示',
-  `show_famehall` bit NOT NULL DEFAULT 0 COMMENT '在名人堂里展示',
+  `show_depart` bit(1) NOT NULL DEFAULT 0 COMMENT '在部门里展示 0:不显示;1:显示',
+  `show_famehall` bit(1) NOT NULL DEFAULT 0 COMMENT '在名人堂里展示 0:不显示;1:显示',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY `id`,
-  UNIQUE KEY `student_id`
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`student_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='成员表';
 ```
 ###部门表结构
 ```SQL
-CREATE TABLE `department` (
-  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cmf_department` (
+  `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `department_name` varchar(16) NOT NULL DEFAULT '' COMMENT '部门名',
   `department_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '部门英文标识',
   `brief` varchar(120) NOT NULL DEFAULT '' COMMENT '部门简介',
   `introduction` varchar(400) NOT NULL DEFAULT '' COMMENT '部门介绍',
   `background` varchar(160) NOT NULL DEFAULT '' COMMENT '部门主题背景',
-  `order` int(2) NOT NULL DEFAULT 1 COMMENT '部门显示顺序',
-  `flag` bit NOT NULL DEFAULT 1 COMMENT '部门是否运作',
+  `order` tinyint(2) NOT NULL DEFAULT 1 COMMENT '部门显示顺序',
+  `flag` bit(1) NOT NULL DEFAULT 1 COMMENT '部门是否运作 0:已关闭;1:运作中',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY `id`
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='部门表';
 ```
 
 ###职位表结构
 ```SQL
-CREATE TABLE `position` (
-  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cmf_position` (
+  `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
   `position_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '职位英文标识',
-  `weight` int(2) NOT NULL DEFAULT '' COMMENT '权重',
-  `order` int(2) NOT NULL DEFAULT 1 COMMENT '职位显示顺序',
-  `department_id` int(2) NOT NULL DEFAULT '' COMMENT '部门id',
+  `weight` tinyint(2) NOT NULL COMMENT '权重',
+  `order` tinyint(2) NOT NULL DEFAULT 1 COMMENT '职位显示顺序',
+  `department_id` tinyint(2) NOT NULL COMMENT '部门id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY `id`
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='职位表';
 ```
 
 ###团队作品表结构
 ```SQL
-CREATE TABLE `product` (
-  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cmf_product` (
+  `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `product_name` varchar(16) NOT NULL DEFAULT '' COMMENT '作品名',
   `product_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '作品英文标识',
   `thumb_img` varchar(16) NOT NULL DEFAULT '' COMMENT '预览图',
-  `weight` int(2) NOT NULL DEFAULT '' COMMENT '权重',
-  `order` int(2) NOT NULL DEFAULT 1 COMMENT '显示顺序',
+  `weight` tinyint(2) NOT NULL COMMENT '权重',
+  `order` tinyint(2) NOT NULL DEFAULT 1 COMMENT '显示顺序',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY `id`
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='团队作品';
 ```
 
 ###管理团队表结构
 ```SQL
-CREATE TABLE `leadership` (
-  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cmf_leadership` (
+  `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(10) NOT NULL DEFAULT '' COMMENT '姓名',
   `department_name` varchar(16) NOT NULL DEFAULT '' COMMENT '部门名',
   `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
-  `generation`  int(2) NOT NULL DEFAULT '' COMMENT '届数',
+  `generation`  tinyint(2) NOT NULL COMMENT '届数',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY `id`
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='管理团队表';
 ```
 
-###新人报名表
+###新人报名表结构
 ```SQL
-CREATE TABLE `application` (
-  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cmf_application` (
+  `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `student_id` varchar(16) NOT NULL DEFAULT '' COMMENT '学号',
   `username` varchar(10) NOT NULL DEFAULT '' COMMENT '姓名',
   `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '自我介绍',
-  `department_id` int(2) NOT NULL DEFAULT '' COMMENT '意向部门id',
-  `pass` bit NOT NULL DEFAULT 0 COMMENT '是否通过',
+  `department_id` tinyint(2) NOT NULL COMMENT '意向部门id',
+  `pass` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否通过 0:未通过;1:已通过',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY `id`
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='新人报名表';
 ```
