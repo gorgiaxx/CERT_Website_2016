@@ -44,12 +44,18 @@
 			<div class="control-group">
 				<label class="control-label">部门主题背景</label>
 				<div class="controls">
-					<input type="text" name="background" value="{$department.background}"></div>
+					<div >
+						<input type="hidden" name="background" id="thumb" value="{$department.background}
+						">
+						<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+							<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand" />
+						</a>
+						<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片"></div>
 			</div>
 			<div class="control-group">
 				<label class="control-label">显示顺序</label>
 				<div class="controls">
-					<input type="text" name="order" value="{$department.order}"></div>
+					<input type="text" name="orders" value="{$department.orders}"></div>
 			</div>
 			<div class="control-group">
 				<label class="control-label">是否启用</label>
@@ -70,5 +76,6 @@
 	</form>
 </div>
 <script src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
 </body>
 </html>

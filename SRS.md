@@ -29,18 +29,17 @@
 使用大图作为背景，几句简单有力的介绍，一个“加入我们”的按钮  
 菜单的焦点右边光标闪烁  
 
-####Gorgiax设计的首页页面
-部分元素参考耶稣君的设计(东方的背景太中二，请无视，暂时没有社团照片，等我找时间去拿)
-![index](./img/index.png)
-
-####Gorgiax设计的部门页面
-部分元素参考耶稣君的设计(东方的背景太中二，请无视，暂时没有社团照片，等我找时间去拿)
-![index](./img/department.png)
-
 ####耶稣君设计的部分页面
 ![index2](./img/index2.png)
 
+####Gorgiax设计的首页页面
+部分元素参考耶稣君的设计(背景请无视，暂时没有社团照片，等我找时间去拿)
+![index](./img/index.png)
+
 ###部门介绍
+####Gorgiax设计的部门页面
+部分元素参考耶稣君的设计(背景请无视，暂时没有社团照片，等我找时间去拿)
+![index](./img/department.png)
 不排除以后部门会有变动，所以不要固定数量，横向平均分成n个部分。  
 每个部分都有一个背景图和部门名称。  
 饱和度和亮度默认降低，获得鼠标焦点恢复亮度和饱和度，出现简短有力的文字介绍  
@@ -77,8 +76,8 @@ CREATE TABLE `cmf_members` (
   `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
   `department_id` tinyint(2) NOT NULL COMMENT '部门id',
   `position_id` tinyint(2) NOT NULL COMMENT '职位id',
-  `join_time` datetime NOT NULL COMMENT '加入时间',
-  `face_id` int(4) NOT NULL COMMENT '头像id',
+  `join_time` date NOT NULL COMMENT '加入时间',
+  `face_url`varchar(160) NOT NULL COMMENT '头像链接',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '个人介绍',
   `link` varchar(160) NOT NULL DEFAULT '' COMMENT '链接',
   `show_depart` bit(1) NOT NULL DEFAULT 0 COMMENT '在部门里展示 0:不显示;1:显示',
@@ -98,7 +97,7 @@ CREATE TABLE `cmf_department` (
   `brief` varchar(120) NOT NULL DEFAULT '' COMMENT '部门简介',
   `introduction` varchar(400) NOT NULL DEFAULT '' COMMENT '部门介绍',
   `background` varchar(160) NOT NULL DEFAULT '' COMMENT '部门主题背景',
-  `order` tinyint(2) NOT NULL DEFAULT 1 COMMENT '部门显示顺序',
+  `orders` tinyint(2) NOT NULL DEFAULT 1 COMMENT '部门显示顺序',
   `flag` bit(1) NOT NULL DEFAULT 1 COMMENT '部门是否运作 0:已关闭;1:运作中',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -113,7 +112,6 @@ CREATE TABLE `cmf_position` (
   `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
   `position_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '职位英文标识',
   `weight` tinyint(2) NOT NULL COMMENT '权重',
-  `order` tinyint(2) NOT NULL DEFAULT 1 COMMENT '职位显示顺序',
   `department_id` tinyint(2) NOT NULL COMMENT '部门id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -129,7 +127,7 @@ CREATE TABLE `cmf_product` (
   `product_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '作品英文标识',
   `thumb_img` varchar(16) NOT NULL DEFAULT '' COMMENT '预览图',
   `weight` tinyint(2) NOT NULL COMMENT '权重',
-  `order` tinyint(2) NOT NULL DEFAULT 1 COMMENT '显示顺序',
+  `orders` tinyint(2) NOT NULL DEFAULT 1 COMMENT '显示顺序',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)

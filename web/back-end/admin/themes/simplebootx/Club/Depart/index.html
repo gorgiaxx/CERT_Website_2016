@@ -9,13 +9,15 @@
 		<form class="js-ajax-form" method="post">
 			<div class="table-actions">
 				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Depart/delete')}" data-subcheck="true" data-msg="{:L('DELETE_CONFIRM_MESSAGE')}">{:L('DELETE')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Depart/active')}" data-subcheck="true" data-msg="你确定是否激活部门？">激活</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Depart/stop')}" data-subcheck="true" data-msg="你确定是否暂停部门？">暂停</button>
 			</div>
 			<table class="table table-hover table-bordered table-list">
 				<thead>
 					<tr>
 						<th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
 						<th>部门名</th>
-						<th width="100">部门英文标识</th>
+						<th width="90">部门英文标识</th>
 						<th>部门简介</th>
 						<th>部门详介</th>
 						<th width="120">部门主题背景</th>
@@ -31,7 +33,7 @@
 					<td>{$vo.department_name_en}</td>
 					<td>{$vo.brief}</td>
 					<td>{$vo.introduction}</td>
-					<td>{$vo.background}</td>
+					<td><a href="{$vo.background}" target="_blank">{$vo.background}</a></td>
 					<td>{$vo.order}</td>
 					<td><if condition="($vo.flag eq 1) ">启用<else />暂停</if></td>
 					<td>
@@ -41,9 +43,6 @@
 				</tr>
 				</foreach>
 			</table>
-			<div class="table-actions">
-				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Depart/delete')}" data-subcheck="true" data-msg="你确定删除吗？">{:L('DELETE')}</button>
-			</div>
 			<div class="pagination">{$Page}</div>
 		</form>
 	</div>

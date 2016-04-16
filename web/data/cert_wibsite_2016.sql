@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2016 at 09:56 AM
+-- Generation Time: Apr 16, 2016 at 03:50 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -327,7 +327,7 @@ CREATE TABLE `cmf_department` (
   `brief` varchar(120) NOT NULL DEFAULT '' COMMENT '部门简介',
   `introduction` varchar(400) NOT NULL DEFAULT '' COMMENT '部门介绍',
   `background` varchar(160) NOT NULL DEFAULT '' COMMENT '部门主题背景',
-  `order` tinyint(2) NOT NULL DEFAULT '1' COMMENT '部门显示顺序',
+  `orders` tinyint(2) NOT NULL DEFAULT '1' COMMENT '部门显示顺序',
   `flag` bit(1) NOT NULL DEFAULT b'1' COMMENT '部门是否运作 0:已关闭;1:运作中',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
@@ -337,9 +337,11 @@ CREATE TABLE `cmf_department` (
 -- Dumping data for table `cmf_department`
 --
 
-INSERT INTO `cmf_department` (`id`, `department_name`, `department_name_en`, `brief`, `introduction`, `background`, `order`, `flag`, `create_time`, `update_time`) VALUES
-(1, '技术研发部', 'td', '技术研发部简短有力的介绍', '技术研发部长篇的介绍，技术研发部长篇的介绍，技术研发部长篇的介绍，技术研发部长篇的介绍', '123', 1, b'1', '2016-04-01 00:00:00', '2016-04-16 07:08:28'),
-(2, '硬件维修部', 'hr', '硬件维修部简介', '硬件维修部详介硬件维修部详介硬件维修部详介硬件维修部详介硬件维修部详介硬件维修部详介硬件维修部详介硬件维修部详介\n', '234', 2, b'1', '0000-00-00 00:00:00', '2016-04-16 07:14:56');
+INSERT INTO `cmf_department` (`id`, `department_name`, `department_name_en`, `brief`, `introduction`, `background`, `orders`, `flag`, `create_time`, `update_time`) VALUES
+(18, '创意策划部', 'op', '创意策划部创意策划部', '创意策划部创意策划部创意策划部创意策划部创意策划部创意策划部', '/cert_website_2016/web/back-end/data/upload/20160416/57124303011aa.jpg', 4, b'1', '2016-04-16 21:50:03', '2016-04-16 13:50:03'),
+(17, '产品设计部', 'pd', '产品设计部产品设计部', '产品设计部产品设计部产品设计部产品设计部产品设计部产品设计部', '/cert_website_2016/web/back-end/data/upload/20160416/5712373e712d3.jpg', 3, b'1', '2016-04-16 20:59:45', '2016-04-16 12:59:45'),
+(16, '硬件维修部', 'hr', '硬件维修部硬件维修部', '硬件维修部硬件维修部硬件维修部硬件维修部硬件维修部硬件维修部', '/cert_website_2016/web/back-end/data/upload/20160416/571233bac12ea.jpg', 2, b'1', '0000-00-00 00:00:00', '2016-04-16 12:45:04'),
+(15, '技术研发部', 'td', '技术研发部技术研发部', '技术研发部技术研发部技术研发部技术研发部技术研发部技术研发部', '/cert_website_2016/web/back-end/data/upload/20160416/5712339f948aa.jpg', 1, b'1', '0000-00-00 00:00:00', '2016-04-16 12:45:04');
 
 -- --------------------------------------------------------
 
@@ -412,8 +414,8 @@ CREATE TABLE `cmf_member` (
   `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
   `department_id` tinyint(2) NOT NULL COMMENT '部门id',
   `position_id` tinyint(2) NOT NULL COMMENT '职位id',
-  `join_time` datetime NOT NULL COMMENT '加入时间',
-  `face_id` int(4) NOT NULL COMMENT '头像id',
+  `join_time` date NOT NULL COMMENT '加入时间',
+  `face_url` varchar(160) NOT NULL COMMENT '头像链接',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '个人介绍',
   `link` varchar(160) NOT NULL DEFAULT '' COMMENT '链接',
   `show_depart` bit(1) NOT NULL DEFAULT b'0' COMMENT '在部门里展示 0:不显示;1:显示',
@@ -426,8 +428,8 @@ CREATE TABLE `cmf_member` (
 -- Dumping data for table `cmf_member`
 --
 
-INSERT INTO `cmf_member` (`id`, `student_id`, `username`, `classname`, `department_id`, `position_id`, `join_time`, `face_id`, `introduction`, `link`, `show_depart`, `show_famehall`, `create_time`, `update_time`) VALUES
-(3, '20142110011214', '李嘉豪', '14-软工12', 1, 2, '2014-10-07 00:00:00', 1, '大帅逼李嘉豪', 'blog.gorgiaxx.com', b'1', b'0', '2016-04-13 00:00:00', '2016-04-13 14:03:37');
+INSERT INTO `cmf_member` (`id`, `student_id`, `username`, `classname`, `department_id`, `position_id`, `join_time`, `face_url`, `introduction`, `link`, `show_depart`, `show_famehall`, `create_time`, `update_time`) VALUES
+(3, '20142110011214', '李嘉豪', '14-软工12', 1, 2, '2014-10-07', '1', '大帅逼李嘉豪', 'http://blog.gorgiaxx.com', b'1', b'0', '2016-04-13 00:00:00', '2016-04-16 12:53:55');
 
 -- --------------------------------------------------------
 
@@ -744,7 +746,6 @@ CREATE TABLE `cmf_position` (
   `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
   `position_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '职位英文标识',
   `weight` tinyint(2) NOT NULL COMMENT '权重',
-  `order` tinyint(2) NOT NULL DEFAULT '1' COMMENT '职位显示顺序',
   `department_id` tinyint(2) NOT NULL COMMENT '部门id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
@@ -792,7 +793,7 @@ CREATE TABLE `cmf_product` (
   `product_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '作品英文标识',
   `thumb_img` varchar(16) NOT NULL DEFAULT '' COMMENT '预览图',
   `weight` tinyint(2) NOT NULL COMMENT '权重',
-  `order` tinyint(2) NOT NULL DEFAULT '1' COMMENT '显示顺序',
+  `orders` tinyint(2) NOT NULL DEFAULT '1' COMMENT '显示顺序',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='团队作品';
@@ -1227,7 +1228,7 @@ ALTER TABLE `cmf_common_action_log`
 -- AUTO_INCREMENT for table `cmf_department`
 --
 ALTER TABLE `cmf_department`
-  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `cmf_guestbook`
 --

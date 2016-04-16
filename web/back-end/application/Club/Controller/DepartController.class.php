@@ -11,8 +11,7 @@ class DepartController extends AdminbaseController {
 
 	function _initialize() {
 		parent::_initialize();
-		$this->
-			depart_model = D("Club/Department");
+		$this->depart_model = D("Club/Department");
 	}
 
 	/**
@@ -56,7 +55,7 @@ class DepartController extends AdminbaseController {
 			if (empty($_POST['introduction'])) {
 				$this->error("请输入部门详介！");
 			}
-			if (empty($_POST['order'])) {
+			if (empty($_POST['orders'])) {
 				$this->error("请输入显示顺序！");
 			}
 			if (empty($_POST['background'])) {
@@ -66,9 +65,10 @@ class DepartController extends AdminbaseController {
 			$department["department_name_en"] = htmlspecialchars($_POST['department_name_en']);
 			$department["brief"] = htmlspecialchars($_POST['brief']);
 			$department["introduction"] = htmlspecialchars($_POST['introduction']);
-			$department["order"] = intval($_POST['order']);
+			$department["orders"] = intval($_POST['orders']);
 			$department["background"] = htmlspecialchars($_POST['background']);
 			$department["flag"] = (bool) $_POST['flag'];
+			$department["create_time"] = date('Y-m-d H:i:s', time());
 			$result = $this->depart_model->add($department);
 			if ($result) {
 				$this->success("添加成功！", U("Depart/index"));
@@ -151,6 +151,54 @@ class DepartController extends AdminbaseController {
 				$this->success("添加成功！", U("Depart/index"));
 			} else {
 				$this->error("添加失败！");
+			}
+		}
+	}
+
+	/**
+	 *  激活部门
+	 */
+	public function active() {
+		$data['flag'] = TRUE;
+		if (isset($_POST['ids'])) {
+			$ids = implode(",", $_POST['ids']);
+			if ($this->depart_model->data($data)->where("id in ($ids)")->save()) {
+				$this->success("激活成功！");
+			} else {
+				$this->error("激活失败！");
+			}
+		} else {
+			if (isset($_GET['id'])) {
+				$id = intval(I("get.id"));
+				if ($this->depart_model->data($data)->save($id)) {
+					$this->success("激活成功！");
+				} else {
+					$this->error("激活失败！");
+				}
+			}
+		}
+	}
+
+	/**
+	 *  暂停部门
+	 */
+	public function stop() {
+		$data['flag'] = FALSE;
+		if (isset($_POST['ids'])) {
+			$ids = implode(",", $_POST['ids']);
+			if ($this->depart_model->data($data)->where("id in ($ids)")->save()) {
+				$this->success("暂停成功！");
+			} else {
+				$this->error("暂停失败！");
+			}
+		} else {
+			if (isset($_GET['id'])) {
+				$id = intval(I("get.id"));
+				if ($this->depart_model->data($data)->save($id)) {
+					$this->success("暂停成功！");
+				} else {
+					$this->error("暂停失败！");
+				}
 			}
 		}
 	}

@@ -6,13 +6,6 @@
 			<li class="active"><a href="{:U('Member/index')}">成员管理</a></li>
 			<li><a href="{:U('Member/add')}">添加成员</a></li>
 		</ul>
-		<form class="well form-search" method="post" action="{:U('AdminPage/index')}">
-			{:L('POST_DATE')}
-			<input type="text" name="start_time" class="js-date" value="{$formget.start_time}" style="width: 80px;" autocomplete="off">-
-			<input autocomplete="off" type="text" class="js-date" name="end_time" value="{$formget.end_time}" style="width: 80px;"> {:L('KEYWORD')}
-			<input type="text" name="keyword" style="width: 200px;" value="{$formget.keyword}" placeholder="{:L('PLEASE_ENTER_KEYWORD')}">
-			<button class="btn btn-primary">{:L('SEARCH')}</button>
-		</form>
 		<form class="js-ajax-form" method="post">
 			<div class="table-actions">
 				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPage/delete')}" data-subcheck="true" data-msg="{:L('DELETE_CONFIRM_MESSAGE')}">{:L('DELETE')}</button>
@@ -22,45 +15,36 @@
 					<tr>
 						<th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
 						<th>头像</th>
-						<th width="100">姓名</th>
-						<th>班级</th>
-						<th>学号</th>
+						<th width="50">姓名</th>
+						<th width="80">班级</th>
+						<th width="80">学号</th>
 						<th width="80">部门</th>
 						<th width="120"><span>职位</span></th>
+						<th>个人介绍</th>
+						<th>链接</th>
 						<th width="120"><span>加入时间</span></th>
 						<th width="120">{:L('ACTIONS')}</th>
 					</tr>
 				</thead>
-				<foreach name="posts" item="vo">
+				<foreach name="members" item="vo">
 				<tr>
 					<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}"></td>
 					<td><a>{$vo.id}</a></td>
-					<td><a href="{:U('portal/page/index',array('id'=>$vo['id']))}" target="_blank"><span>{$vo.post_title}</span></a></td>
-					<td>{$users[$vo['post_author']]['user_login']}</td>
-					<td>{$vo.post_date}</td>
+					<td>{$vo.username}</td>
+					<td>{$vo.classname}</td>
+					<td>{$vo.student_id}</td>
+					<td>{$vo.department_id}</td>
+					<td>{$vo.position_id}</td>
+					<td>{$vo.introduction}</td>
+					<td><a href="{$vo.link}" target="_blank">{$vo.link}</a></td>
+					<td>{$vo.join_time}</td>
 					<td>
 						<a href="{:U('AdminPage/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a>|
 						<a href="{:U('AdminPage/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
 					</td>
 				</tr>
 				</foreach>
-				<tfoot>
-					<tr>
-						<th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
-						<th>头像</th>
-						<th width="100">姓名</th>
-						<th>班级</th>
-						<th>学号</th>
-						<th width="80">部门</th>
-						<th width="120"><span>职位</span></th>
-						<th width="120"><span>加入时间</span></th>
-						<th width="120">{:L('ACTIONS')}</th>
-					</tr>
-				</tfoot>
 			</table>
-			<div class="table-actions">
-				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminPage/delete')}" data-subcheck="true" data-msg="你确定删除吗？">{:L('DELETE')}</button>
-			</div>
 			<div class="pagination">{$Page}</div>
 		</form>
 	</div>

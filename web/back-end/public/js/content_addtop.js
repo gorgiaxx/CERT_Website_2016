@@ -42,6 +42,7 @@ args 参数
 module 所属模块
 catid 栏目id
 authkey 参数密钥，验证args
+cropper 是否裁剪
 **/
 function flashupload(uploadid, name, textareaid, funcName, args, module, catid, authkey) {
     var args = args ? '&args=' + args : '';
