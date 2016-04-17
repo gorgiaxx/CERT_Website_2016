@@ -19,16 +19,7 @@ class MemberController extends AdminbaseController {
 	 *  列表
 	 */
 	public function index() {
-		$where = array();
-		$count = $this->member_model->where($where)->count();
-		$page = $this->page($count, 20);
-		$members = $this->member_model
-			->where($where)
-			->limit($page->firstRow . ',' . $page->listRows)
-			->order("id DESC")
-			->select();
-		$this->assign("members", $members);
-		$this->assign("Page", $page->show('Admin'));
+		$this->_lists();
 		$this->display();
 	}
 
@@ -36,8 +27,7 @@ class MemberController extends AdminbaseController {
 	 *  增加成员页面
 	 */
 	public function add() {
-		$where = array();
-		$departments = $this->depart_model->where($where)->order("orders ASC")->field('id,department_name')->select();
+		$departments = $this->depart_model->order("orders ASC")->field('id,department_name')->select();
 		$this->assign("departments", $departments);
 		$this->display();
 	}
@@ -74,11 +64,18 @@ class MemberController extends AdminbaseController {
 			$member["show_depart"] = (bool) $_POST['show_depart'];
 			$member["show_famehall"] = (bool) $_POST['show_famehall'];
 			$member["create_time"] = date('Y-m-d H:i:s', time());
-			$result = $this->member_model->add($member);
-			if ($result) {
-				$this->success("添加成功！", U("Member/index"));
+
+			if (is_null($_POST['id'])) {
+				$result = $this->member_model->add($member);
 			} else {
-				$this->error("添加失败！");
+				$id = intval($_POST['id']);
+				$result = $this->member_model->where('id=' . $id)->save($member);
+			}
+
+			if ($result) {
+				$this->success("编辑成功！", U("Member/index"));
+			} else {
+				$this->error("编辑失败！");
 			}
 		}
 	}
@@ -121,51 +118,53 @@ class MemberController extends AdminbaseController {
 		}
 	}
 
-	/**
-	 * 更新成员
-	 */
-	public function update() {
+	private function _lists() {
+		$where_ands = array();
+		$fields = array(
+			'keyword' => array("field" => "cmf_member.username", "operator" => "like"),
+		);
 		if (IS_POST) {
-			if (is_null($_POST['id'])) {
-				$this->error("err0r!");
+			foreach ($fields as $param => $val) {
+				if (isset($_POST[$param]) && !empty($_POST[$param])) {
+					$operator = $val['operator'];
+					$field = $val['field'];
+					$get = $_POST[$param];
+					$_GET[$param] = $get;
+					if ($operator == "like") {
+						$get = "%$get%";
+					}
+					array_push($where_ands, "$field $operator '$get'");
+				}
 			}
-			if (empty($_POST['student_id'])) {
-				$this->error("请输入学号！");
-			}
-			if (empty($_POST['username'])) {
-				$this->error("请输入姓名！");
-			}
-			if (empty($_POST['classname'])) {
-				$this->error("请输入班级名！");
-			}
-			if (empty($_POST['department_id'])) {
-				$this->error("请选择部门！");
-			}
-			if (empty($_POST['position_id'])) {
-				$this->error("请选择职位！");
-			}
-			if (empty($_POST['join_time'])) {
-				$this->error("请输入加入日期！");
-			}
-			$id = intval($_POST['id']);
-			$member["student_id"] = htmlspecialchars($_POST['student_id']);
-			$member["username"] = htmlspecialchars($_POST['username']);
-			$member["classname"] = htmlspecialchars($_POST['classname']);
-			$member["department_id"] = intval($_POST['department_id']);
-			$member["position_id"] = intval($_POST['position_id']);
-			$member["join_time"] = htmlspecialchars($_POST['join_time']);
-			$member["face_url"] = htmlspecialchars($_POST['face_url']);
-			$member["introduction"] = htmlspecialchars($_POST['introduction']);
-			$member["link"] = htmlspecialchars($_POST['link']);
-			$member["show_depart"] = (bool) $_POST['show_depart'];
-			$member["show_famehall"] = (bool) $_POST['show_famehall'];
-			$member["create_time"] = date('Y-m-d H:i:s', time());
-			$result = $this->member_model->where('id=' . $id)->save($member);
-			if ($result) {
-				$this->success("更新成功！", U("Member/index"));
-			} else {
-				$this->error("更新失败！");
+		} else {
+			foreach ($fields as $param => $val) {
+				if (isset($_GET[$param]) && !empty($_GET[$param])) {
+					$operator = $val['operator'];
+					$field = $val['field'];
+					$get = $_GET[$param];
+					if ($operator == "like") {
+						$get = "%$get%";
+					}
+					array_push($where_ands, "$field $operator '$get'");
+				}
 			}
 		}
+
+		unset($_GET[C('VAR_URL_PARAMS')]);
+
+		$where = join(" and ", $where_ands);
+		$count = $this->member_model->where($where)->count();
+		$page = $this->page($count, 20);
+		$this->assign("current_page", $page->GetCurrentPage());
+		$members = $this->member_model
+			->join('LEFT JOIN cmf_department ON cmf_member.department_id = cmf_department.id')
+			->field('cmf_department.department_name,cmf_member.*')
+			->where($where)
+			->limit($page->firstRow . ',' . $page->listRows)
+			->order("cmf_member.id DESC")
+			->select();
+		$this->assign("formget", $_GET);
+		$this->assign("members", $members);
+		$this->assign("Page", $page->show('Member'));
 	}
 }

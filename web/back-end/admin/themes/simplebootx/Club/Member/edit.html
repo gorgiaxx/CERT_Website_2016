@@ -10,7 +10,7 @@
 			<a href="#">编辑成员</a>
 		</li>
 	</ul>
-	<form method="post" class="form-horizontal js-ajax-form" action="{:U('Member/update')}">
+	<form method="post" class="form-horizontal js-ajax-form" action="{:U('Member/add_post')}">
 		<input type="hidden" name="id" value="{$id}">
 		<fieldset>
 			<div class="control-group">
@@ -88,11 +88,11 @@
 					<td>
 						<label class="radio">
 							<input type="radio" name="show_depart" value="1" <if condition="$member.show_depart eq 1">checked</if>
-						>启用
+						>是
 					</label>
 					<label class="radio">
 						<input type="radio" name="show_depart" value="0" <if condition="$member.show_depart eq 0">checked</if>
-					>停止
+					>否
 				</label>
 			</td>
 		</div>
@@ -103,11 +103,11 @@
 			<td>
 				<label class="radio">
 					<input type="radio" name="show_famehall" value="1" <if condition="($member.show_famehall eq 1)">checked</if>
-				>启用
+				>是
 			</label>
 			<label class="radio">
 				<input type="radio" name="show_famehall" value="0" <if condition="($member.show_famehall eq 0)">checked</if>
-			>停止
+			>否
 		</label>
 	</td>
 </div>

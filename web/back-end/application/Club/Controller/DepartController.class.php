@@ -69,11 +69,16 @@ class DepartController extends AdminbaseController {
 			$department["background"] = htmlspecialchars($_POST['background']);
 			$department["flag"] = (bool) $_POST['flag'];
 			$department["create_time"] = date('Y-m-d H:i:s', time());
-			$result = $this->depart_model->add($department);
-			if ($result) {
-				$this->success("添加成功！", U("Depart/index"));
+			if (is_null($_POST['id'])) {
+				$result = $this->depart_model->add($department);
 			} else {
-				$this->error("添加失败！");
+				$id = intval($_POST['id']);
+				$result = $this->depart_model->where('id=' . $id)->save($department);
+			}
+			if ($result) {
+				$this->success("编辑成功！", U("Depart/index"));
+			} else {
+				$this->error("编辑失败！");
 			}
 		}
 	}
@@ -108,49 +113,6 @@ class DepartController extends AdminbaseController {
 				} else {
 					$this->error("删除失败！");
 				}
-			}
-		}
-	}
-
-	/**
-	 * 更新部门
-	 */
-	public function update() {
-		if (IS_POST) {
-			if (is_null($_POST['id'])) {
-				$this->error("err0r!");
-			}
-			if (empty($_POST['department_name'])) {
-				$this->error("请输入部门名！");
-			}
-			if (empty($_POST['department_name_en'])) {
-				$this->error("请输入部门英文标识！");
-			}
-			if (empty($_POST['brief'])) {
-				$this->error("请输入部门简介！");
-			}
-			if (empty($_POST['introduction'])) {
-				$this->error("请输入部门详介！");
-			}
-			if (empty($_POST['order'])) {
-				$this->error("请输入显示顺序！");
-			}
-			if (empty($_POST['background'])) {
-				$this->error("请添加主题背景！");
-			}
-			$id = intval($_POST['id']);
-			$department["department_name"] = htmlspecialchars($_POST['department_name']);
-			$department["department_name_en"] = htmlspecialchars($_POST['department_name_en']);
-			$department["brief"] = htmlspecialchars($_POST['brief']);
-			$department["introduction"] = htmlspecialchars($_POST['introduction']);
-			$department["order"] = intval($_POST['order']);
-			$department["background"] = htmlspecialchars($_POST['background']);
-			$department["flag"] = (bool) $_POST['flag'];
-			$result = $this->depart_model->where('id=' . $id)->save($department);
-			if ($result) {
-				$this->success("更新成功！", U("Depart/index"));
-			} else {
-				$this->error("更新失败！");
 			}
 		}
 	}

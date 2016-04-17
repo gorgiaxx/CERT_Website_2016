@@ -6,6 +6,10 @@
 			<li class="active"><a href="{:U('Member/index')}">成员管理</a></li>
 			<li><a href="{:U('Member/add')}">添加成员</a></li>
 		</ul>
+		<form class="well form-search" method="post" action="{:U('Member/index')}">
+			<input type="text" name="keyword" style="width: 200px;" value="{$formget.keyword}" placeholder="请输入姓名...">
+			<input type="submit" class="btn btn-primary" value="搜索" />
+		</form>
 		<form class="js-ajax-form" method="post">
 			<div class="table-actions">
 				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Member/delete')}" data-subcheck="true" data-msg="{:L('DELETE_CONFIRM_MESSAGE')}">{:L('DELETE')}</button>
@@ -29,11 +33,11 @@
 				<foreach name="members" item="vo">
 				<tr>
 					<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}"></td>
-					<td><a>{$vo.id}</a></td>
+					<td><a>{$vo.face_url}</a></td>
 					<td>{$vo.username}</td>
 					<td>{$vo.classname}</td>
 					<td>{$vo.student_id}</td>
-					<td>{$vo.department_id}</td>
+					<td>{$vo.department_name}</td>
 					<td>{$vo.position_id}</td>
 					<td>{$vo.introduction}</td>
 					<td><a href="{$vo.link}" target="_blank">{$vo.link}</a></td>
@@ -54,11 +58,11 @@
 		function refersh_window() {
 			var refersh_time = getCookie('refersh_time');
 			if (refersh_time == 1) {
-				window.location.reload();
+				window.location = "{:U('Member/index',$formget)}";
 			}
 		}
 		setInterval(function() {
-			refersh_window()
+			refersh_window();
 		}, 2000);
 	</script>
 </body>
