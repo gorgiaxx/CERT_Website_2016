@@ -3,14 +3,14 @@
 <body>
 	<div class="wrap js-check-wrap">
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="{:U('Depart/index')}">部门管理</a></li>
-			<li><a href="{:U('Depart/add')}">添加部门</a></li>
+			<li class="active"><a href="{:U('AdminDepart/index')}">部门管理</a></li>
+			<li><a href="{:U('AdminDepart/add')}">添加部门</a></li>
 		</ul>
 		<form class="js-ajax-form" method="post">
 			<div class="table-actions">
-				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Depart/delete')}" data-subcheck="true" data-msg="{:L('DELETE_CONFIRM_MESSAGE')}">{:L('DELETE')}</button>
-				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Depart/active')}" data-subcheck="true" data-msg="你确定是否激活部门？">激活</button>
-				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Depart/stop')}" data-subcheck="true" data-msg="你确定是否暂停部门？">暂停</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminDepart/delete')}" data-subcheck="true" data-msg="{:L('DELETE_CONFIRM_MESSAGE')}">{:L('DELETE')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminDepart/active')}" data-subcheck="true" data-msg="你确定是否激活部门？">激活</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('AdminDepart/stop')}" data-subcheck="true" data-msg="你确定是否暂停部门？">暂停</button>
 			</div>
 			<table class="table table-hover table-bordered table-list">
 				<thead>
@@ -32,13 +32,13 @@
 					<td>{$vo.department_name}</td>
 					<td>{$vo.department_name_en}</td>
 					<td>{$vo.brief}</td>
-					<td height="10px">{$vo.introduction}</td>
+					<td>{$vo.introduction}</td>
 					<td><a href="{$vo.background}" target="_blank">{$vo.background}</a></td>
 					<td>{$vo.orders}</td>
 					<td><if condition="$vo.flag eq 1">启用<else />暂停</if></td>
 					<td>
-						<a href="{:U('Depart/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a>|
-						<a href="{:U('Depart/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+						<a href="{:U('AdminDepart/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a>|
+						<a href="{:U('AdminDepart/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
 					</td>
 				</tr>
 				</foreach>

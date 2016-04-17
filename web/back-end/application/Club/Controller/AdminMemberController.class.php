@@ -5,7 +5,7 @@
 namespace Club\Controller;
 use Common\Controller\AdminbaseController;
 
-class MemberController extends AdminbaseController {
+class AdminMemberController extends AdminbaseController {
 
 	protected $member_model;
 
@@ -165,6 +165,6 @@ class MemberController extends AdminbaseController {
 			->select();
 		$this->assign("formget", $_GET);
 		$this->assign("members", $members);
-		$this->assign("Page", $page->show('Member'));
+		$this->assign("Page", $page->show('AdminMember'));
 	}
 }

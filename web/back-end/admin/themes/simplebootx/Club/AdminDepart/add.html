@@ -4,13 +4,13 @@
 <div class="wrap">
 	<ul class="nav nav-tabs">
 		<li>
-			<a href="{:U('Depart/index')}">部门管理</a>
+			<a href="{:U('AdminDepart/index')}">部门管理</a>
 		</li>
 		<li class="active">
-			<a href="{:U('Depart/add')}">添加部门</a>
+			<a href="{:U('AdminDepart/add')}">添加部门</a>
 		</li>
 	</ul>
-	<form method="post" class="form-horizontal js-ajax-form" action="{:U('Depart/add_post')}">
+	<form method="post" class="form-horizontal js-ajax-form" action="{:U('AdminDepart/add_post')}">
 		<fieldset>
 			<div class="control-group">
 				<label class="control-label">部门名</label>
@@ -70,7 +70,7 @@
 		</fieldset>
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
-			<a class="btn" href="{:U('Depart/index')}">{:L('BACK')}</a>
+			<a class="btn" href="{:U('AdminDepart/index')}">{:L('BACK')}</a>
 		</div>
 	</form>
 </div>

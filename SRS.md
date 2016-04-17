@@ -30,6 +30,7 @@
 菜单的焦点右边光标闪烁  
 
 ####耶稣君设计的部分页面
+前台页面以金浩设计为准
 ![index2](./img/index2.png)
 
 ####Gorgiax设计的首页页面
@@ -157,7 +158,7 @@ CREATE TABLE `cmf_application` (
   `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '自我介绍',
   `department_id` tinyint(2) NOT NULL COMMENT '意向部门id',
-  `pass` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否通过 0:未通过;1:已通过',
+  `pass` bit(1) NOT NULL DEFAULT 0 COMMENT '是否通过 0:未通过;1:已通过',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)

@@ -5,7 +5,7 @@
 namespace Club\Controller;
 use Common\Controller\AdminbaseController;
 
-class DepartController extends AdminbaseController {
+class AdminDepartController extends AdminbaseController {
 
 	protected $depart_model;
 
@@ -132,7 +132,7 @@ class DepartController extends AdminbaseController {
 		} else {
 			if (isset($_GET['id'])) {
 				$id = intval(I("get.id"));
-				if ($this->depart_model->data($data)->save($id)) {
+				if ($this->depart_model->data($data)->where("id=$id")->save()) {
 					$this->success("激活成功！");
 				} else {
 					$this->error("激活失败！");

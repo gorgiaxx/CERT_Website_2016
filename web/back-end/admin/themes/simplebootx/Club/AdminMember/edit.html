@@ -4,13 +4,13 @@
 <div class="wrap">
 	<ul class="nav nav-tabs">
 		<li>
-			<a href="{:U('Member/index')}">成员管理</a>
+			<a href="{:U('AdminMember/index')}">成员管理</a>
 		</li>
 		<li class="active">
 			<a href="#">编辑成员</a>
 		</li>
 	</ul>
-	<form method="post" class="form-horizontal js-ajax-form" action="{:U('Member/add_post')}">
+	<form method="post" class="form-horizontal js-ajax-form" action="{:U('AdminMember/add_post')}">
 		<input type="hidden" name="id" value="{$id}">
 		<fieldset>
 			<div class="control-group">
@@ -115,7 +115,7 @@
 </fieldset>
 <div class="form-actions">
 <button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
-<a class="btn" href="{:U('Member/index')}">{:L('BACK')}</a>
+<a class="btn" href="{:U('AdminMember/index')}">{:L('BACK')}</a>
 </div>
 </form>
 </div>

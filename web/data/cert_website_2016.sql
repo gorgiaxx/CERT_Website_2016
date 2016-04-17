@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2016 at 10:33 AM
+-- Generation Time: Apr 17, 2016 at 03:32 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -46,10 +46,17 @@ CREATE TABLE `cmf_application` (
   `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '自我介绍',
   `department_id` tinyint(2) NOT NULL COMMENT '意向部门id',
-  `pass` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否通过 0:未通过;1:已通过',
+  `pass` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否通过 0:未通过;1:已通过',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='新人报名表';
+
+--
+-- Dumping data for table `cmf_application`
+--
+
+INSERT INTO `cmf_application` (`id`, `student_id`, `username`, `classname`, `introduction`, `department_id`, `pass`, `create_time`, `update_time`) VALUES
+(1, '2015211001001005', '韩睿', '15-软工10', '自带两部wp的大水比', 17, b'0', '2016-04-17 00:00:00', '2016-04-17 13:29:46');
 
 -- --------------------------------------------------------
 
@@ -82,6 +89,53 @@ CREATE TABLE `cmf_auth_access` (
   `rule_name` varchar(255) NOT NULL COMMENT '规则唯一英文标识,全小写',
   `type` varchar(30) DEFAULT NULL COMMENT '权限规则分类，请加应用前缀,如admin_'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限授权表';
+
+--
+-- Dumping data for table `cmf_auth_access`
+--
+
+INSERT INTO `cmf_auth_access` (`role_id`, `rule_name`, `type`) VALUES
+(2, 'admin/content/default', 'admin_url'),
+(2, 'api/guestbookadmin/index', 'admin_url'),
+(2, 'api/guestbookadmin/delete', 'admin_url'),
+(2, 'comment/commentadmin/index', 'admin_url'),
+(2, 'comment/commentadmin/delete', 'admin_url'),
+(2, 'comment/commentadmin/check', 'admin_url'),
+(2, 'portal/adminpost/index', 'admin_url'),
+(2, 'portal/adminpost/listorders', 'admin_url'),
+(2, 'portal/adminpost/top', 'admin_url'),
+(2, 'portal/adminpost/recommend', 'admin_url'),
+(2, 'portal/adminpost/move', 'admin_url'),
+(2, 'portal/adminpost/check', 'admin_url'),
+(2, 'portal/adminpost/delete', 'admin_url'),
+(2, 'portal/adminpost/edit', 'admin_url'),
+(2, 'portal/adminpost/edit_post', 'admin_url'),
+(2, 'portal/adminpost/add', 'admin_url'),
+(2, 'portal/adminpost/add_post', 'admin_url'),
+(2, 'portal/adminterm/index', 'admin_url'),
+(2, 'portal/adminterm/listorders', 'admin_url'),
+(2, 'portal/adminterm/delete', 'admin_url'),
+(2, 'portal/adminterm/edit', 'admin_url'),
+(2, 'portal/adminterm/edit_post', 'admin_url'),
+(2, 'portal/adminterm/add', 'admin_url'),
+(2, 'portal/adminterm/add_post', 'admin_url'),
+(2, 'portal/adminpage/index', 'admin_url'),
+(2, 'portal/adminpage/listorders', 'admin_url'),
+(2, 'portal/adminpage/delete', 'admin_url'),
+(2, 'portal/adminpage/edit', 'admin_url'),
+(2, 'portal/adminpage/edit_post', 'admin_url'),
+(2, 'portal/adminpage/add', 'admin_url'),
+(2, 'portal/adminpage/add_post', 'admin_url'),
+(2, 'admin/recycle/default', 'admin_url'),
+(2, 'portal/adminpost/recyclebin', 'admin_url'),
+(2, 'portal/adminpost/restore', 'admin_url'),
+(2, 'portal/adminpost/clean', 'admin_url'),
+(2, 'portal/adminpage/recyclebin', 'admin_url'),
+(2, 'portal/adminpage/clean', 'admin_url'),
+(2, 'portal/adminpage/restore', 'admin_url'),
+(2, 'club/member/default', 'admin_url'),
+(2, 'club/member/index', 'admin_url'),
+(2, 'club/depart/index', 'admin_url');
 
 -- --------------------------------------------------------
 
@@ -273,7 +327,13 @@ INSERT INTO `cmf_auth_rule` (`id`, `module`, `type`, `name`, `param`, `title`, `
 (166, 'Club', 'admin_url', 'club/member/index', NULL, '成员管理', 1, ''),
 (167, 'Club', 'admin_url', 'club/department/default', NULL, '部门管理', 1, ''),
 (168, 'Club', 'admin_url', 'club/depart/default', NULL, '部门管理', 1, ''),
-(169, 'Club', 'admin_url', 'club/depart/index', NULL, '部门管理', 1, '');
+(169, 'Club', 'admin_url', 'club/depart/index', NULL, '部门管理', 1, ''),
+(170, 'Club', 'admin_url', 'club/adminmember/default', NULL, '社团管理', 1, ''),
+(171, 'Club', 'admin_url', 'club/adminmember/index', NULL, '成员管理', 1, ''),
+(172, 'Club', 'admin_url', 'club/admindepart/index', NULL, '部门管理', 1, ''),
+(173, 'Club', 'admin_url', 'club/application/default', NULL, '社团申请', 1, ''),
+(174, 'Club', 'admin_url', 'club/adminapplication/default', NULL, '社团申请', 1, ''),
+(175, 'Club', 'admin_url', 'club/adminapplication/index', NULL, '社团申请', 1, '');
 
 -- --------------------------------------------------------
 
@@ -341,7 +401,8 @@ INSERT INTO `cmf_department` (`id`, `department_name`, `department_name_en`, `br
 (18, '创意策划部', 'op', '创意策划部创意策划部', '创意策划部创意策划部创意策划部创意策划部创意策划部创意策划部', '/cert_website_2016/web/back-end/data/upload/20160416/57124303011aa.jpg', 4, b'1', '2016-04-16 21:50:03', '2016-04-16 13:50:03'),
 (17, '产品设计部', 'pd', '产品设计部产品设计部', '产品设计部产品设计部产品设计部产品设计部产品设计部产品设计部', '/cert_website_2016/web/back-end/data/upload/20160416/5712373e712d3.jpg', 3, b'1', '2016-04-16 20:59:45', '2016-04-16 12:59:45'),
 (16, '硬件维修部', 'hr', '硬件维修部硬件维修部', '硬件维修部硬件维修部硬件维修部硬件维修部硬件维修部硬件维修部', '/cert_website_2016/web/back-end/data/upload/20160416/571233bac12ea.jpg', 2, b'1', '0000-00-00 00:00:00', '2016-04-16 12:45:04'),
-(15, '技术研发部', 'td', '技术研发部技术研发部', '技术研发部技术研发部技术研发部技术研发部技术研发部技术研发部', '/cert_website_2016/web/back-end/data/upload/20160416/5712339f948aa.jpg', 1, b'1', '0000-00-00 00:00:00', '2016-04-16 12:45:04');
+(15, '技术研发部', 'td', '技术研发部技术研发部', '技术研发部技术研发部技术研发部技术研发部技术研发部技术研发部', '/cert_website_2016/web/back-end/data/upload/20160416/5712339f948aa.jpg', 1, b'1', '0000-00-00 00:00:00', '2016-04-16 12:45:04'),
+(20, '网络安全部', 'is', '网络安全部网络安全部233', '网络安全部网络安全部网络安全部网络安全部网络安全部网络安全部', '/cert_website_2016/web/back-end/data/upload/20160417/571371a89f50a.jpg						', 5, b'0', '2016-04-17 19:21:26', '2016-04-17 11:21:26');
 
 -- --------------------------------------------------------
 
@@ -430,7 +491,8 @@ CREATE TABLE `cmf_member` (
 
 INSERT INTO `cmf_member` (`id`, `student_id`, `username`, `classname`, `department_id`, `position_id`, `join_time`, `face_url`, `introduction`, `link`, `show_depart`, `show_famehall`, `create_time`, `update_time`) VALUES
 (3, '20142110011214', '李嘉豪', '14-软工12', 15, 2, '2014-10-07', '1', '大帅逼李嘉豪', 'http://blog.gorgiaxx.com', b'1', b'0', '2016-04-17 15:21:38', '2016-04-17 07:24:29'),
-(4, '20132110010326', '牟亚诚', '13-软工3', 15, 1, '2013-10-07', '', '一只尚未脱单的组长', 'http://halamyc.me/', b'0', b'0', '2016-04-17 15:22:05', '2016-04-17 07:22:05');
+(4, '20132110010326', '牟亚诚', '13-软工3', 15, 1, '2013-10-07', '', '一只尚未脱单的组长', 'http://halamyc.me/', b'0', b'0', '2016-04-17 15:22:05', '2016-04-17 07:22:05'),
+(5, '20132110130231', '罗思聪', '13-软交2', 17, 2, '2013-10-07', '', '土豪思聪233', '', b'0', b'0', '2016-04-17 19:11:33', '2016-04-17 11:11:33');
 
 -- --------------------------------------------------------
 
@@ -619,9 +681,10 @@ INSERT INTO `cmf_menu` (`id`, `parentid`, `app`, `model`, `action`, `data`, `typ
 (159, 54, 'Admin', 'Slide', 'cancelban', '', 1, 0, '启用幻灯片', '', '', 0),
 (160, 149, 'Admin', 'User', 'ban', '', 1, 0, '禁用管理员', '', '', 0),
 (161, 149, 'Admin', 'User', 'cancelban', '', 1, 0, '启用管理员', '', '', 0),
-(162, 0, 'Club', 'Member', 'default', '', 1, 1, '社团管理', '', '', 0),
-(163, 162, 'Club', 'Member', 'index', '', 1, 1, '成员管理', '', '', 0),
-(164, 162, 'Club', 'Depart', 'index', '', 1, 1, '部门管理', '', '', 0);
+(162, 0, 'Club', 'AdminMember', 'default', '', 1, 1, '社团管理', 'institution', '', 0),
+(163, 162, 'Club', 'AdminMember', 'index', '', 1, 1, '成员管理', 'user', '', 0),
+(164, 162, 'Club', 'AdminDepart', 'index', '', 1, 1, '部门管理', '', '', 0),
+(165, 162, 'Club', 'AdminApplication', 'index', '', 1, 1, '社团申请', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -821,7 +884,8 @@ CREATE TABLE `cmf_role` (
 --
 
 INSERT INTO `cmf_role` (`id`, `name`, `pid`, `status`, `remark`, `create_time`, `update_time`, `listorder`) VALUES
-(1, '超级管理员', 0, 1, '拥有网站最高管理员权限！', 1329633709, 1329633709, 0);
+(1, '超级管理员', 0, 1, '拥有网站最高管理员权限！', 1329633709, 1329633709, 0),
+(2, '社团管理员', NULL, 1, '社团管理员', 1460884595, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -833,6 +897,13 @@ CREATE TABLE `cmf_role_user` (
   `role_id` int(11) UNSIGNED DEFAULT '0' COMMENT '角色 id',
   `user_id` int(11) DEFAULT '0' COMMENT '用户id'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户角色对应表';
+
+--
+-- Dumping data for table `cmf_role_user`
+--
+
+INSERT INTO `cmf_role_user` (`role_id`, `user_id`) VALUES
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -959,7 +1030,8 @@ CREATE TABLE `cmf_users` (
 --
 
 INSERT INTO `cmf_users` (`id`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `avatar`, `sex`, `birthday`, `signature`, `last_login_ip`, `last_login_time`, `create_time`, `user_activation_key`, `user_status`, `score`, `user_type`, `coin`, `mobile`) VALUES
-(1, 'admin', '###375ca7165f219db3b137ced79cd86d1c', 'admin', 'admin@ecjtu.org', '', NULL, 0, NULL, NULL, '0.0.0.0', '2016-04-17 11:37:23', '2016-04-12 11:37:11', '', 1, 0, 1, 0, '');
+(1, 'admin', '###375ca7165f219db3b137ced79cd86d1c', 'admin', 'admin@ecjtu.org', '', NULL, 0, NULL, NULL, '0.0.0.0', '2016-04-17 17:18:35', '2016-04-12 11:37:11', '', 1, 0, 1, 0, ''),
+(2, 'certadmin', '###686c8e64daed9de32c55747def829b6b', '', 'certadmin@ecjtu.org', '', NULL, 0, NULL, NULL, '0.0.0.0', '2016-04-17 17:17:57', '2016-04-17 17:17:36', '', 1, 0, 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1204,7 +1276,7 @@ ALTER TABLE `cmf_ad`
 -- AUTO_INCREMENT for table `cmf_application`
 --
 ALTER TABLE `cmf_application`
-  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cmf_asset`
 --
@@ -1214,7 +1286,7 @@ ALTER TABLE `cmf_asset`
 -- AUTO_INCREMENT for table `cmf_auth_rule`
 --
 ALTER TABLE `cmf_auth_rule`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键', AUTO_INCREMENT=170;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键', AUTO_INCREMENT=176;
 --
 -- AUTO_INCREMENT for table `cmf_comments`
 --
@@ -1229,7 +1301,7 @@ ALTER TABLE `cmf_common_action_log`
 -- AUTO_INCREMENT for table `cmf_department`
 --
 ALTER TABLE `cmf_department`
-  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `cmf_guestbook`
 --
@@ -1249,12 +1321,12 @@ ALTER TABLE `cmf_links`
 -- AUTO_INCREMENT for table `cmf_member`
 --
 ALTER TABLE `cmf_member`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `cmf_menu`
 --
 ALTER TABLE `cmf_menu`
-  MODIFY `id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 --
 -- AUTO_INCREMENT for table `cmf_nav`
 --
@@ -1299,7 +1371,7 @@ ALTER TABLE `cmf_product`
 -- AUTO_INCREMENT for table `cmf_role`
 --
 ALTER TABLE `cmf_role`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cmf_route`
 --
@@ -1329,7 +1401,7 @@ ALTER TABLE `cmf_term_relationships`
 -- AUTO_INCREMENT for table `cmf_users`
 --
 ALTER TABLE `cmf_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cmf_user_favorites`
 --
