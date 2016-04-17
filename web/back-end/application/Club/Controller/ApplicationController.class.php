@@ -34,7 +34,6 @@ class ApplicationController extends HomebaseController {
 			$applicant["department_id"] = intval($_POST['department_id']);
 			$applicant["introduction"] = htmlspecialchars($_POST['introduction']);
 			$applicant["create_time"] = date('Y-m-d H:i:s', time());
-			var_dump($applicant);
 			if ($this->application_model->add($applicant)) {
 				$this->ajaxReturn(1);
 			} else {
