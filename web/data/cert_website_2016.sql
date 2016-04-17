@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2016 at 03:50 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: Apr 17, 2016 at 10:33 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cert_wibsite_2016`
+-- Database: `cert_website_2016`
 --
 
 -- --------------------------------------------------------
@@ -429,7 +429,8 @@ CREATE TABLE `cmf_member` (
 --
 
 INSERT INTO `cmf_member` (`id`, `student_id`, `username`, `classname`, `department_id`, `position_id`, `join_time`, `face_url`, `introduction`, `link`, `show_depart`, `show_famehall`, `create_time`, `update_time`) VALUES
-(3, '20142110011214', '李嘉豪', '14-软工12', 1, 2, '2014-10-07', '1', '大帅逼李嘉豪', 'http://blog.gorgiaxx.com', b'1', b'0', '2016-04-13 00:00:00', '2016-04-16 12:53:55');
+(3, '20142110011214', '李嘉豪', '14-软工12', 15, 2, '2014-10-07', '1', '大帅逼李嘉豪', 'http://blog.gorgiaxx.com', b'1', b'0', '2016-04-17 15:21:38', '2016-04-17 07:24:29'),
+(4, '20132110010326', '牟亚诚', '13-软工3', 15, 1, '2013-10-07', '', '一只尚未脱单的组长', 'http://halamyc.me/', b'0', b'0', '2016-04-17 15:22:05', '2016-04-17 07:22:05');
 
 -- --------------------------------------------------------
 
@@ -958,7 +959,7 @@ CREATE TABLE `cmf_users` (
 --
 
 INSERT INTO `cmf_users` (`id`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `avatar`, `sex`, `birthday`, `signature`, `last_login_ip`, `last_login_time`, `create_time`, `user_activation_key`, `user_status`, `score`, `user_type`, `coin`, `mobile`) VALUES
-(1, 'admin', '###375ca7165f219db3b137ced79cd86d1c', 'admin', 'admin@ecjtu.org', '', NULL, 0, NULL, NULL, '0.0.0.0', '2016-04-16 13:52:27', '2016-04-12 11:37:11', '', 1, 0, 1, 0, '');
+(1, 'admin', '###375ca7165f219db3b137ced79cd86d1c', 'admin', 'admin@ecjtu.org', '', NULL, 0, NULL, NULL, '0.0.0.0', '2016-04-17 11:37:23', '2016-04-12 11:37:11', '', 1, 0, 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1228,7 +1229,7 @@ ALTER TABLE `cmf_common_action_log`
 -- AUTO_INCREMENT for table `cmf_department`
 --
 ALTER TABLE `cmf_department`
-  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `cmf_guestbook`
 --
@@ -1248,7 +1249,7 @@ ALTER TABLE `cmf_links`
 -- AUTO_INCREMENT for table `cmf_member`
 --
 ALTER TABLE `cmf_member`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `cmf_menu`
 --

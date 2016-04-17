@@ -148,9 +148,9 @@ class DepartController extends AdminbaseController {
 			$department["flag"] = (bool) $_POST['flag'];
 			$result = $this->depart_model->where('id=' . $id)->save($department);
 			if ($result) {
-				$this->success("添加成功！", U("Depart/index"));
+				$this->success("更新成功！", U("Depart/index"));
 			} else {
-				$this->error("添加失败！");
+				$this->error("更新失败！");
 			}
 		}
 	}

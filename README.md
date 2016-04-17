@@ -10,7 +10,7 @@
 │  │ 			└─db.php 		//数据库配置文件
 │  ├─front-end				//前端开发目录
 │  └─data 				//开发数据文件
-│  	└─cert_wibsite_2016.sql 	//数据库导出文件
+│  	└─cert_website_2016.sql 	//数据库导出文件
 ├─README.MD 			//读我
 │─SRS.MD 				//需求文档
 │─img 					//文档图片文件夹

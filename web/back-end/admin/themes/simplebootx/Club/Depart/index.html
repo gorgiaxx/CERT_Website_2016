@@ -16,8 +16,8 @@
 				<thead>
 					<tr>
 						<th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
-						<th>部门名</th>
-						<th width="90">部门英文标识</th>
+						<th width="60">部门名</th>
+						<th width="50">标识</th>
 						<th>部门简介</th>
 						<th>部门详介</th>
 						<th width="120">部门主题背景</th>
@@ -32,10 +32,10 @@
 					<td>{$vo.department_name}</td>
 					<td>{$vo.department_name_en}</td>
 					<td>{$vo.brief}</td>
-					<td>{$vo.introduction}</td>
+					<td height="10px">{$vo.introduction}</td>
 					<td><a href="{$vo.background}" target="_blank">{$vo.background}</a></td>
-					<td>{$vo.order}</td>
-					<td><if condition="($vo.flag eq 1) ">启用<else />暂停</if></td>
+					<td>{$vo.orders}</td>
+					<td><if condition="$vo.flag eq 1">启用<else />暂停</if></td>
 					<td>
 						<a href="{:U('Depart/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a>|
 						<a href="{:U('Depart/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>

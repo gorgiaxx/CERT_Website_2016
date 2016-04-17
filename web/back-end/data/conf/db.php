@@ -5,7 +5,7 @@
 return array(
     'DB_TYPE' => 'mysql',
     'DB_HOST' => 'localhost',
-    'DB_NAME' => 'cert_wibsite_2016',
+    'DB_NAME' => 'cert_website_2016',
     'DB_USER' => 'root',
     'DB_PWD' => '123456',
     'DB_PORT' => '3306',
