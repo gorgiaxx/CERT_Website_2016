@@ -7,8 +7,6 @@ use Common\Controller\AdminbaseController;
 
 class AdminMemberController extends AdminbaseController {
 
-	protected $member_model;
-
 	function _initialize() {
 		parent::_initialize();
 		$this->member_model = D("Club/Member");

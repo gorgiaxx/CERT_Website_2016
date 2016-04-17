@@ -7,8 +7,6 @@ use Common\Controller\AdminbaseController;
 
 class AdminDepartController extends AdminbaseController {
 
-	protected $depart_model;
-
 	function _initialize() {
 		parent::_initialize();
 		$this->depart_model = D("Club/Department");

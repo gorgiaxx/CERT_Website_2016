@@ -7,8 +7,6 @@ use Common\Controller\AdminbaseController;
 
 class AdminApplicationController extends AdminbaseController {
 
-	protected $depart_model;
-
 	function _initialize() {
 		parent::_initialize();
 		$this->application_model = D("Club/Application");
@@ -59,6 +57,29 @@ class AdminApplicationController extends AdminbaseController {
 				$this->success("取消考核成功！");
 			} else {
 				$this->error("取消考核失败！");
+			}
+		}
+	}
+
+	/**
+	 *  删除部门
+	 */
+	public function delete() {
+		if (isset($_POST['ids'])) {
+			$ids = implode(",", $_POST['ids']);
+			if ($this->application_model->where("id in ($ids)")->delete()) {
+				$this->success("删除成功！");
+			} else {
+				$this->error("删除失败！");
+			}
+		} else {
+			if (isset($_GET['id'])) {
+				$id = intval(I("get.id"));
+				if ($this->application_model->delete($id)) {
+					$this->success("删除成功！");
+				} else {
+					$this->error("删除失败！");
+				}
 			}
 		}
 	}
