@@ -189,5 +189,13 @@ Param | Optional | Type | Description
 **classname** | False | HTML Encode String | 班级名
 **department_id** | False | String | 意向部门id
 **introduction** | False | HTML Encode String | 自我介绍
-成功:1
-失败:0
+
+####提交数据示例
+```
+student_id=20151216008888&username=%E9%99%88%E9%99%88&classname=%E4%B8%8D%E7%9F%A5%E9%81%93&department_id=15&introduction=%E8%BF%99%E6%98%AF%E4%B8%80%E6%9D%A1%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D
+```
+####返回数据示例
+```
+1   //成功
+0   //失败
+```
