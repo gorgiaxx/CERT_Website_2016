@@ -164,3 +164,30 @@ CREATE TABLE `cmf_application` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='新人报名表';
 ```
+
+##接口说明
+###获取部门列表
+####GET
+```
+index.php?g=club&m=application&a=getDepartList
+```
+####返回结果示例
+```json
+{"0":{"id":"15","department_name":"\u6280\u672f\u7814\u53d1\u90e8"},"1":{"id":"16","department_name":"\u786c\u4ef6\u7ef4\u4fee\u90e8"},"2":{"id":"17","department_name":"\u4ea7\u54c1\u8bbe\u8ba1\u90e8"},"3":{"id":"18","department_name":"\u521b\u610f\u7b56\u5212\u90e8"},"referer":"","state":"fail"}
+```
+###提交社团申请
+####POST
+```
+index.php?g=club&m=application&a=sendApplication
+```
+
+####参数说明
+Param | Optional | Type | Description
+----------|-----|---------|--------------------
+**student_id** | False | String | 学号
+**username** | False | HTML Encode String | 姓名
+**classname** | False | HTML Encode String | 班级名
+**department_id** | False | String | 意向部门id
+**introduction** | False | HTML Encode String | 自我介绍
+成功:1
+失败:0
