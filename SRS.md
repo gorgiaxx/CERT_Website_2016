@@ -113,7 +113,6 @@ CREATE TABLE `cmf_position` (
   `position_name` varchar(16) NOT NULL DEFAULT '' COMMENT '职位名',
   `position_name_en` varchar(24) NOT NULL DEFAULT '' COMMENT '职位英文标识',
   `weight` tinyint(2) NOT NULL COMMENT '权重',
-  `department_id` tinyint(2) NOT NULL COMMENT '部门id',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
@@ -158,7 +157,8 @@ CREATE TABLE `cmf_application` (
   `classname` varchar(16) NOT NULL DEFAULT '' COMMENT '班级',
   `introduction` varchar(255) NOT NULL DEFAULT '' COMMENT '自我介绍',
   `department_id` tinyint(2) NOT NULL COMMENT '意向部门id',
-  `pass` bit(1) NOT NULL DEFAULT 0 COMMENT '是否通过 0:未通过;1:已通过',
+  `pass` bit(1) NOT NULL DEFAULT 0 COMMENT '面试是否通过 0:未通过;1:已通过',
+  `check` bit(1) NOT NULL DEFAULT 0 COMMENT '考核是否通过 0:未通过;1:已通过',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
