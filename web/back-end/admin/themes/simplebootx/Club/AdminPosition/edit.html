@@ -4,13 +4,13 @@
 <div class="wrap">
 	<ul class="nav nav-tabs">
 		<li>
-			<a href="{:U('AdminPositon/index')}">职位管理</a>
+			<a href="{:U('AdminPosition/index')}">职位管理</a>
 		</li>
 		<li class="active">
 			<a href="#">编辑职位</a>
 		</li>
 	</ul>
-	<form method="post" class="form-horizontal js-ajax-form" action="{:U('AdminPositon/add_post')}">
+	<form method="post" class="form-horizontal js-ajax-form" action="{:U('AdminPosition/add_post')}">
             	<input type="hidden" name="id" value="{$id}">
 		<fieldset>
 			<div class="control-group">
@@ -35,7 +35,7 @@
 		</fieldset>
 		<div class="form-actions">
 			<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
-			<a class="btn" href="{:U('AdminPositon/index')}">{:L('BACK')}</a>
+			<a class="btn" href="{:U('AdminPosition/index')}">{:L('BACK')}</a>
 		</div>
 	</form>
 </div>

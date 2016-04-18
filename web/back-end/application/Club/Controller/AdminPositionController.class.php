@@ -39,13 +39,13 @@ class AdminPositionController extends AdminbaseController {
 	function add_post() {
 		if (IS_POST) {
 			if (empty($_POST['position_name'])) {
-				$this->error("请输入学号！");
+				$this->error("请输入职位名！");
 			}
 			if (empty($_POST['position_name_en'])) {
-				$this->error("请输入姓名！");
+				$this->error("请输入职位英文名！");
 			}
 			if (empty($_POST['weight'])) {
-				$this->error("请输入班级名！");
+				$this->error("请输入权重！");
 			}
 			$position["position_name"] = htmlspecialchars($_POST['position_name']);
 			$position["position_name_en"] = htmlspecialchars($_POST['position_name_en']);
@@ -60,7 +60,7 @@ class AdminPositionController extends AdminbaseController {
 			}
 
 			if ($result) {
-				$this->success("编辑成功！", U("Position/index"));
+				$this->success("编辑成功！", U("AdminPosition/index"));
 			} else {
 				$this->error("编辑失败！");
 			}
@@ -68,7 +68,7 @@ class AdminPositionController extends AdminbaseController {
 	}
 
 	/**
-	 *  编辑部门页面
+	 *  编辑职位页面
 	 */
 	public function edit() {
 		$id = intval(I("get.id"));
@@ -76,6 +76,29 @@ class AdminPositionController extends AdminbaseController {
 		$this->assign("position", $position);
 		$this->assign("id", $id);
 		$this->display();
+	}
+
+	/**
+	 *  删除职位
+	 */
+	public function delete() {
+		if (isset($_POST['ids'])) {
+			$ids = implode(",", $_POST['ids']);
+			if ($this->position_model->where("id in ($ids)")->delete()) {
+				$this->success("删除成功！");
+			} else {
+				$this->error("删除失败！");
+			}
+		} else {
+			if (isset($_GET['id'])) {
+				$id = intval(I("get.id"));
+				if ($this->position_model->delete($id)) {
+					$this->success("删除成功！");
+				} else {
+					$this->error("删除失败！");
+				}
+			}
+		}
 	}
 
 }
