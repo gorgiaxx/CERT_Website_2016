@@ -1,6 +1,6 @@
 <?php
 /**
- * MemberController(响应组成员管理)
+ * 响应组成员管理
  */
 namespace Club\Controller;
 use Common\Controller\AdminbaseController;

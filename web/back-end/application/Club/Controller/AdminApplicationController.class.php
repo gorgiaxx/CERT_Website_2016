@@ -22,10 +22,38 @@ class AdminApplicationController extends AdminbaseController {
 		$this->display();
 	}
 	/**
+	 *  通过面试
+	 */
+	public function pass() {
+		$data['pass'] = TRUE;
+		if (isset($_GET['id'])) {
+			$id = intval(I("get.id"));
+			if ($this->application_model->data($data)->where("id=$id")->save()) {
+				$this->success("通过面试成功！");
+			} else {
+				$this->error("通过面试失败！");
+			}
+		}
+	}
+	/**
+	 *  取消通过
+	 */
+	public function unpass() {
+		$data['pass'] = FALSE;
+		if (isset($_GET['id'])) {
+			$id = intval(I("get.id"));
+			if ($this->application_model->data($data)->where("id=$id")->save()) {
+				$this->success("取消面试成功！");
+			} else {
+				$this->error("取消面试失败！");
+			}
+		}
+	}
+	/**
 	 *  通过考核
 	 */
 	public function check() {
-		$data['pass'] = TRUE;
+		$data['check'] = TRUE;
 		if (isset($_GET['id'])) {
 			$id = intval(I("get.id"));
 			if ($this->application_model->data($data)->where("id=$id")->save()) {
@@ -48,7 +76,7 @@ class AdminApplicationController extends AdminbaseController {
 	 *  取消通过
 	 */
 	public function uncheck() {
-		$data['pass'] = FALSE;
+		$data['check'] = FALSE;
 		if (isset($_GET['id'])) {
 			$id = intval(I("get.id"));
 			if ($this->application_model->data($data)->where("id=$id")->save()) {

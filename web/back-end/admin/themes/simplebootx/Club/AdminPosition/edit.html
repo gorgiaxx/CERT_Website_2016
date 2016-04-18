@@ -1,0 +1,45 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+	<ul class="nav nav-tabs">
+		<li>
+			<a href="{:U('AdminPositon/index')}">职位管理</a>
+		</li>
+		<li class="active">
+			<a href="#">编辑职位</a>
+		</li>
+	</ul>
+	<form method="post" class="form-horizontal js-ajax-form" action="{:U('AdminPositon/add_post')}">
+            	<input type="hidden" name="id" value="{$id}">
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label">职位名</label>
+				<div class="controls">
+					<input type="text" name="position_name" value="{$position.position_name}">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">职位英文标识</label>
+				<div class="controls">
+					<input type="text" name="position_name_en" value="{$position.position_name_en}">
+					<span class="form-required">*</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">职位权重</label>
+				<div class="controls">
+					<input type="text" name="weight" value="{$position.weight}"></div>
+			</div>
+		</fieldset>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+			<a class="btn" href="{:U('AdminPositon/index')}">{:L('BACK')}</a>
+		</div>
+	</form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+</body>
+</html>
