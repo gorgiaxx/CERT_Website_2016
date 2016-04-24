@@ -18,6 +18,5 @@
 ```
 
 ##开发说明
-* 后台采用[ThinkCMF](http://www.thinkcmf.com/)内容管理系统
-* 使用[Cropper](http://fengyuanchen.github.io/cropper/)图片裁剪插件 
+* 后台采用[Wordpress](https://wordpress.com/)
 * [需求文档](https://github.com/gorgiaxx/CERT_Website_2016/blob/master/SRS.md)
