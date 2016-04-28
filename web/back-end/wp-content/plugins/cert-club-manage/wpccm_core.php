@@ -29,40 +29,6 @@ define('SYNC_CONTENT_LIMIT', 300);
 define('SYNC_EXCERPT_LIMIT', 100);
 define('MAX_SEARCH_LIMIT', 6);
 
-//utils
-function trim_words($str, $limit, $suffix = '...', $db_charset = DB_CHARSET, $strip_tags = true) {
-	if ($strip_tags) {
-		$str = strip_tags($str);
-	}
-	if (strpos($db_charset, "utf8") !== false
-		|| strpos($db_charset, "utf8") !== false) {
-		$db_charset = "utf8";
-	}
-	$new_str = mb_substr($str, 0, $limit, $db_charset);
-	$new_str = mb_strlen($str, $db_charset) > $limit ? $new_str . $suffix : $new_str;
-	return $new_str;
-}
-
-//Interface
-$options = get_option(WPCCM_SETTINGS_OPTION);
-global $token;
-$token = isset($options['token']) ? $options['token'] : '';
-
-//Setup wechat image size
-function set_wechat_img_size() {
-	add_image_size('sup_wechat_big', 360, 200, true);
-	add_image_size('sup_wechat_small', 200, 200, true);
-}
-add_action('after_setup_theme', 'set_wechat_img_size');
-
-function sup_wechat_custom_sizes($sizes) {
-	return array_merge($sizes, array(
-		'sup_wechat_big' => __('WeChat big image', 'WPCCM'),
-		'sup_wechat_small' => __('WeChat small image', 'WPCCM'),
-	));
-}
-add_filter('image_size_names_choose', 'sup_wechat_custom_sizes');
-
 //Setup Admin
 add_action('_admin_menu', 'wpccm_admin_setup');
 function wpccm_admin_setup() {
@@ -99,13 +65,6 @@ function wpccm_admin_setup() {
 		//Product
 		$productObject = WPCCM_Product::get_instance();
 	}
-}
-
-//AJAX handle
-//Safe Redirect
-add_action('admin_init', 'ajax_handle', 999);
-function ajax_handle() {
-	require_once 'ajax_request_handle.php';
 }
 
 //Safe Redirect

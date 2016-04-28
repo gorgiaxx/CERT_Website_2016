@@ -1,0 +1,24 @@
+{b}Dbg{/b}: on:2016年4月26日 下午3:56: admin: Attempt to save a session that was not started. ip=::1
+#0  wppa_log() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-content/plugins/wp-photo-album-plus/wppa-session.php:179]
+#1  wppa_save_session() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-content/plugins/wp-photo-album-plus/wppa-session.php:151]
+#2  wppa_session_end() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-includes/plugin.php:525]
+#3  do_action() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-includes/load.php:638]
+#4  shutdown_action_hook()
+
+Uri history:
+
+
+{b}Fix{/b}: on:2016年4月26日 下午3:56: admin: Option cache
+{b}Dbg{/b}: on:2016年4月26日 下午3:56: admin: Attempt to save a session that was not started. ip=::1
+#0  wppa_log() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-content/plugins/wp-photo-album-plus/wppa-session.php:179]
+#1  wppa_save_session() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-content/plugins/wp-photo-album-plus/wppa-session.php:151]
+#2  wppa_session_end() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-includes/plugin.php:525]
+#3  do_action() called at [/home/gorgiaxx/www/cert_website_2016/web/back-end/wp-includes/load.php:638]
+#4  shutdown_action_hook()
+
+Uri history:
+
+
+{b}Fix{/b}: on:2016年4月26日 下午3:56: admin: Option cache
+{b}Fix{/b}: on:2016年4月26日 下午3:56: admin: Option cache
+{b}Fix{/b}: on:2016年4月26日 下午3:57: admin: Option cache

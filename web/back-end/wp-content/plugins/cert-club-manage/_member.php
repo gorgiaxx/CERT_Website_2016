@@ -3,7 +3,7 @@ require_once 'class-wpccm-member-table.php';
 global $wpdb;
 
 if (isset($_GET['s'])) {
-	$keyword = "where wp_member.username like '" . sanitize_text_field($_GET['s']) . "'";
+	$keyword = "where wp_member.username like '%" . sanitize_text_field($_GET['s']) . "%'";
 } else {
 	$keyword = '';
 }

@@ -43,8 +43,8 @@ class WPCCM_Settings {
 	 */
 	public function add_plugin_page() {
 		// This page will be under "Settings"
-		$page_title = __('CERT Club Manage', 'WPCCM');
-		$menu_title = __('CERT Club Manage', 'WPCCM');
+		$page_title = __('社团管理', 'WPCCM');
+		$menu_title = __('社团管理', 'WPCCM');
 		$capability = 'manage_options';
 		$menu_slug = WPCCM_SETTINGS_PAGE;
 

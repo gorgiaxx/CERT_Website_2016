@@ -5,15 +5,14 @@
  */
 global $wpdb;
 function redirect() {
-	$redirect = '<script type="text/javascript">
-';
+	$redirect = '<script type="text/javascript">';
 	$redirect .= 'window.location = "' . menu_page_url(WPCCM_MEMBER_PAGE, false) . '"';
-	$redirect .= '
-</script>
-';
+	$redirect .= '</script>';
 	echo $redirect;
 }
-
+/*
+ * Delete members
+ */
 if (isset($_GET['delete'])) {
 	if (is_array($_GET['delete'])) {
 		$current_id = implode(",", $_GET['delete']);
@@ -117,18 +116,28 @@ require_once 'content.php';
 <link href="<?php echo WPCCM_PLUGIN_URL; ?>
 /css/modal.css" rel="stylesheet">
 <div class="wrap">
-	<?php echo $content['header']; ?>
-	<?php echo $content['tips_content']; ?>
-	<hr>
-	<h2>添加成员</h2>
-	<br>
-
+<?php echo $content['header']; ?>
+<?php echo $content['tips_content']; ?>
+<hr>
+<h2>添加成员</h2>
+<br>
 <?php if (isset($errors) && is_wp_error($errors)): ?>
-<div class="error"><p><?php echo implode("</p>\n<p>", $errors->get_error_messages()); ?></p></div>
-<?php endif;?>
+<div class="error">
+	<p>
+		<?php echo implode("</p>\n<p>", $errors->get_error_messages()); ?></p>
+	</div>
+	<?php endif;?>
 	<div class="postbox">
 		<div class="inside">
 			<form action="" method="post" class="edit-template-form">
+				<?php
+wp_enqueue_media();
+wp_enqueue_script('plupload-handlers');
+wp_enqueue_script('image-edit');
+wp_enqueue_script('set-post-thumbnail');
+wp_enqueue_style('imgareaselect');
+wp_enqueue_script('media-gallery');
+?>
 				<input type="hidden" name="edit" value="<?php echo $current_id; ?>
 				" />
 				<input type="hidden" name="page" value="<?php echo WPCCM_MEMBER_PAGE; ?>
@@ -174,9 +183,9 @@ require_once 'content.php';
 								<option value="">请选择部门</option>
 								<?php foreach ($department as $val): ?>
 								<?php $selected = ($val->id == @$member->department_id) ? 'selected' : '';?>
-								<option value="<?php echo $val->id; ?>"<?php echo $selected; ?>><?php echo $val->department_name; ?></option>
-								<?php endforeach;?>
-							</select>
+								<option value="<?php echo $val->id; ?>"<?php echo $selected; ?>>
+									<?php echo $val->department_name; ?></option>
+								<?php endforeach;?></select>
 						</td>
 					</tr>
 
@@ -190,8 +199,7 @@ require_once 'content.php';
 								<?php foreach ($position as $val): ?>
 								<?php $selected = ($val->id == @$member->position_id) ? 'selected' : '';?>
 								<option value="<?php echo $val->id; ?>"<?php echo $selected; ?>><?php echo $val->position_name; ?></option>
-								<?php endforeach;?>
-							</select>
+								<?php endforeach;?></select>
 						</td>
 					</tr>
 					<tr valign="top">
@@ -247,16 +255,28 @@ require_once 'content.php';
 					&nbsp;&nbsp;
 					<?php submit_button('保存', 'secondary', 'submit-save', false);?>
 					&nbsp;
-					<a href="<?php echo menu_page_url(WPCCM_MEMBER_PAGE, false); ?>
-						" class="button secondary">取消</a>
+					<a href="<?php echo menu_page_url(WPCCM_MEMBER_PAGE, false); ?>" class="button secondary">取消</a>
 				</div>
 				<div class="clear"></div>
 				<?php if ($current_id != ''): ?>
 				<div class="func-delete">
-					<a href="<?php echo menu_page_url(WPCCM_MEMBER_PAGE, false) . '&delete=' . $current_id; ?>
-						">删除</a>
+					<a href="<?php echo menu_page_url(WPCCM_MEMBER_PAGE, false) . '&delete=' . $current_id; ?>">删除</a>
 				</div>
 				<?php endif;?></form>
+			<div id="postimagediv" class="postbox ">
+				<button type="button" class="handlediv button-link" aria-expanded="true">
+					<span class="screen-reader-text">切换面板：特色图片</span>
+					<span class="toggle-indicator" aria-hidden="true"></span>
+				</button>
+				<h2 class="hndle ui-sortable-handle">
+					<span>特色图片</span>
+				</h2>
+				<div class="inside">
+					<p class="hide-if-no-js">
+						<a id="set-post-thumbnail" class="thickbox">设为特色图像</a>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
