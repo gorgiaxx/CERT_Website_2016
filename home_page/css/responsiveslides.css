@@ -115,18 +115,25 @@ li{list-style-type:none;}
 	}
 }
 #header {
-width:1300px;
-top:600px;
+width: 100%;
+
 margin: 0 auto;
 }
 #header-1 {
 font-size:50px;
-margin-left:250px;
+margin: 0 auto;
 margin-top:80px;
 letter-spacing:20px;
+width: 60%;
+
 }
 .blue {
 color:#0066FF;
+
+}
+.black
+{
+	margin: 0 auto;
 }
 #header-2 {
 font-size:20px;
@@ -142,7 +149,11 @@ margin-top:80px;
 margin-left:550px;
 }
 #main {
-width:1300px;
+width:100%;
+overflow: hidden;
+margin-left: auto;
+margin-right: auto;
+margin-top: 100px;
 
 }
 #main-left {
@@ -270,23 +281,26 @@ display:none;
 }
 #our-team {
 clear:both;
-width:1300px;
-margin-top:200px;
+width:100%;
+padding-top: 80px;
+margin:0 auto;
 }
 #large {
-margin-left:500px;
-padding-top:100px;
+margin: 0 auto;
+padding-top:30px;
 font-size:60px;
-letter-spacing:10px;
+letter-spacing:5px;
 font-weight:lighter;
+width: 20%;
+
 }
 #little {
-margin-left:400px;
+margin: 0 auto;
 margin-top:100px;
 font-size:20px;
 letter-spacing:10px;
 font-weight:lighter;
-width:500px;
+width:30%;
 }
 #number {
 float:left;
@@ -334,57 +348,68 @@ margin-top:20px;
 
 #contacts {
 clear:both;
-width:1300px;
-margin-left:100px;
-margin-top:100px;
+width:100%;
+margin: 0 auto;
 }
 .line {
-width:100px;
+width:10%;
 height:3px;
 background:#0066FF;
 margin-top:10px;
-margin-left:520px;
-position:absolute;
+margin: 0 auto;
+
 }
-#line {width:100px;
+#line {
+width:9%;
 height:3px;
 background:#0066FF;
-margin-left:580px;
-margin-top:50px;
-position:absolute;
+margin-top: 0px;
+margin-left: auto;
+margin-right: auto;
+
 }
-#gray-line {
-width:100px;
+.gray-line {
+width:9%;
 height:3px;
 background:#999999;
-margin-left:580px;
-margin-top:50px;
-position:absolute;
+margin-top: 50px;
+margin-left: auto;
+margin-right: auto;
+
 }
 
 
 
 #large-text {
-margin-left:450px;
-padding-top:60px;
-font-size:50px;
-letter-spacing:10px;
+margin: 0 auto;
+padding-top:30px;
+font-size:60px;
+letter-spacing:5px;
 font-weight:lighter;
+width: 20%;
 }
 #little-text {
-width:300px;
-margin-left:410px;
-margin-top:50px;
+margin: 0 auto;
+margin-top:100px;
+font-size:20px;
+letter-spacing:10px;
+font-weight:lighter;
+width:30%;
+
 }
 #contacts-way {
-margin-left:50px;
+margin-top: 100px;
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+overflow: hidden;
 }
 #one {
 width:100px;
 height:200px;
 background:url(../images/qq.png) no-repeat;
 float:left;
-margin-left:200px;
+margin-left:240px;
 margin-top:50px;
 }
 #two {
@@ -432,17 +457,21 @@ margin-left:30px;
 color:#CC0066;
 }
 #find-us {
-margin-left:560px;
-margin-top:100px;
+width: 45%;
+margin-top: 100px;
+margin-left: auto;
+margin-right: auto;
 font-size:30px;
 font-weight:lighter;
-letter-spacing:20px;
-clear:both;
+letter-spacing:30px;
+padding-left: 300px;
+
 }
 #map {
-width:600px;
+width:50%;
 height:400px;
 background:url(../images/map.png);
-margin-left:350px;
+margin-left: auto;
+margin-right: auto;
 margin-top:100px;
 }
