@@ -11,6 +11,7 @@ window.onload = function(){
 	var odiv1 = document.getElementById('number-one');
 	var oname = document.getElementById('number-name');
 	var timer = null;
+	
 	odiv10.onmouseover=function(){
 			clearTimeout(timer);
 			oname.innerHTML = "现任团队成员"
