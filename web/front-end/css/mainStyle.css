@@ -1,0 +1,273 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+html,body
+{
+	width: 100%;
+	height: 100%;
+}
+
+
+.banner
+{
+	width: 100%;
+	height: 100%;
+
+	color: white;
+}
+.swiper-container
+{
+	width: 100%;
+	height: 100%;
+}
+.teamSlide
+{
+	background-image: url(../images/team_bg.png);
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.contactSlide
+{
+	background-image: url(../images/contact_bg.png);
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.aboutSlide
+{
+	background-image: url(../images/about_bg.png);
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.slide-content
+{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 13%;
+
+	width: 500px;
+	height: 400px;
+
+	text-align: center;
+}
+.slide-content h1
+{
+	font-size: 100px;
+}
+.slide-content hr
+{
+	margin-top: 30px;
+	margin-bottom: 60px;
+
+	height:10px;
+
+	background-color: white;
+}
+.slide-content div
+{
+	margin-left: auto;
+	margin-right: auto;
+
+	border: solid 5px;
+	width: 340px;
+	height: 100px;
+
+	font-size: 45px;
+	line-height: 100px;
+}
+.container
+{
+	margin-left: auto;
+	margin-right: auto;
+
+	width: 1000px;
+}
+.container > hr
+{
+	margin: 50px auto;
+
+	width: 155px;
+	height: 4px;
+
+	border-width: 0;
+
+	background-color: #00a0e9;
+
+	clear: both;
+}
+.container h1
+{
+	font-size: 70px;
+	letter-spacing: 11px;
+
+	font-weight: normal;
+	text-align: center;
+}
+.container h1 span{color: #56beb9;}
+.container h2
+{
+	margin-top: 50px;
+	padding: 0 50px;
+
+	font-size: 21px;
+	font-weight: normal;
+
+	text-align: center;
+}
+section{clear: both;}
+section > hr
+{
+	margin: 50px auto;
+
+	width: 175px;
+}
+.department{margin-top: 100px;}
+.department div{display: inline-block;}
+.depar-list
+{
+	/*float: left;*/
+
+	width: 510px;
+}
+.depar-list > div
+{
+	margin-bottom: 50px;
+
+	width: 100%;
+}
+.depar-list-icon
+{
+	width: 84px;
+	height: 84px;
+
+	vertical-align: top;
+}
+.depar-list-intro
+{
+	margin-left: 15px;
+
+	width: 350px;
+}
+.depar-list-intro h3{font-size: 25px;}
+.depar-list-intro p
+{
+	margin-top: 15px;
+
+	font-size: 18px;
+}
+.depar-overview
+{
+	float: right;
+
+	width: 360px;
+}
+.depar-overview hr{margin: 20px 0;}
+.depar-overview h3{font-size: 25px;}
+.over-flag
+{
+	float: left;
+
+	width: 23px;
+	height: 23px;
+
+	vertical-align: top;
+
+	background-image: url(../images/flag_open.png);
+}
+.overview1 .over-flag{background-image: url(../images/flag_close.png);}
+.over-content
+{
+	margin-left: 10px;
+
+	width: 300px;
+}
+.over-content p{margin-top: 10px;}
+.overview2 p,.overview3 p{display: none;}
+
+.team{margin-top: 100px;}
+.team-list
+{
+	float: left;
+
+	padding-left: 20px;
+	padding-right: 20px;
+	width: 410px;
+
+	font-size: 25px;
+	font-weight: bold;
+
+	display: inline-block;
+}
+.team-list>div
+{
+	height: 50px;
+	line-height: 50px;
+	padding-left: 40px;
+}
+.team-member
+{
+	margin-left: 20px;
+	margin-right: 20px;
+
+	width: 510px;
+
+	font-size: 25px;
+
+	display: inline-block;
+}
+.team-member2,.team-member3,.team-member4,.team-member5,.team-member6,.team-member7,.team-member8,.team-member9,.team-member10{display: none;}
+
+.contact{margin-top: 50px;}
+.contact-way
+{
+	text-align: center;
+}
+.contact-way>div{display: inline-block;}
+.contact-icon
+{
+	margin: 0 30px;
+
+	width: 140px;
+	height: 140px;
+	border-radius: 100%;
+
+	text-align: center;
+	line-height: 190px;
+
+	background-color: #56beb9;
+
+	display: inline-block;
+}
+.contact h3
+{
+	font-size: 40px;
+	font-weight: normal;
+	text-align: center;
+}
+.contact-way h4
+{
+	margin-top: 20px;
+
+	color: #f29a76;
+	font-size: 22px;
+}
+.contact-way p
+{
+	margin-top: 20px;
+}
+.contact-address
+{
+	margin: 100px auto;
+}
+.contact-address div
+{
+	margin: 50px auto;
+	
+	width: 700px;
+	height: 700px;
+}
+.contact-address span
+{
+	color: #00a0e9;
+}
