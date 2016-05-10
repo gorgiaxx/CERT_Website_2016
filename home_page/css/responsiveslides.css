@@ -41,14 +41,14 @@ li{list-style-type:none;}
 /* Callback example */
 .callbacks_container{
 	margin-bottom:2px;
-	position:relative;
+	/*position:relative;*/
 	width:100%;
 	max-width:100%;
 	text-align:center;
 }
 
 .callbacks{
-	position:relative;
+	/*position:relative;*/
 	list-style:none;
 	overflow:hidden;
 	width:100%;
@@ -56,18 +56,96 @@ li{list-style-type:none;}
 	margin:0;
 }
 .callbacks li{
-	position:absolute;
+	/*position:absolute;*/
 	width:100%;
 	left:0;
 	top:0;
 }
 .callbacks img{
 	display:block;
-	position:relative;
+	/*position:relative;*/
 	z-index:1;
 	height:auto;
 	width:100%;
 	border:0;
+}
+#txt1 {
+	font-size: 80px;
+	position: absolute;
+	margin-top: 15%;
+	margin-left:37%;
+	letter-spacing: 20px;
+	color: white;
+	font-weight: lighter;
+}
+#txt2 {
+	font-size: 80px;
+	position: absolute;
+	margin-top: 15%;
+	margin-left:30%;
+	letter-spacing: 20px;
+	color: white;
+	font-weight: lighter;
+}
+#txt3 {
+	font-size: 80px;
+	position: absolute;
+	margin-top: 15%;
+	margin-left:39%;
+	letter-spacing: 18px;
+	color: white;
+	font-weight: lighter;
+}
+#buttom1 {
+	border: 2px solid white;
+	position: absolute;
+	margin-top: 37%;
+	margin-left: 43%;
+	text-align: center;
+	padding-top: 1.5%;
+	padding-bottom: 1.5%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	color: white;
+	font-size: 20px;
+
+}
+#buttom2 {
+	border: 2px solid white;
+	position: absolute;
+	margin-top: 37%;
+	margin-left: 44%;
+	text-align: center;
+	padding-top: 1.5%;
+	padding-bottom: 1.5%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	color: white;
+	font-size: 20px;
+
+}
+#buttom3 {
+	border: 2px solid white;
+	position: absolute;
+	margin-top: 37%;
+	margin-left: 43%;
+	text-align: center;
+	padding-top: 1.5%;
+	padding-bottom: 1.5%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	color: white;
+	font-size: 20px;
+
+}
+.line1 {
+position: absolute;
+width: 25%;
+height: 3px;
+background: white;
+margin-left: 37%;
+margin-top: 30%;
+
 }
 .callbacks .caption{
 	display:block;
@@ -120,13 +198,16 @@ width: 100%;
 margin: 0 auto;
 }
 #header-1 {
-font-size:50px;
+font-size:60px;
 margin: 0 auto;
-margin-top:80px;
-letter-spacing:20px;
+margin-top:30px;
+letter-spacing:10px;
 width: 60%;
+padding-top: 20px;
 
 }
+
+
 .blue {
 color:#0066FF;
 
@@ -142,11 +223,12 @@ width:500px;
 margin-left:400px;
 }
 #header-3 {
-width:200px;
+width:30%;
 height:3px;
 background:#999999;
 margin-top:80px;
-margin-left:550px;
+margin-left:auto;
+margin-right: auto;
 }
 #main {
 width:100%;
@@ -191,7 +273,7 @@ color:#000000;
 margin:10px;
 }
 .small {
-font-size:10px;
+font-size:20px;
 color:#000000;
 margin-top:20px;
 }
