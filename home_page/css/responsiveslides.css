@@ -220,11 +220,12 @@ color:#0066FF;
 #header-2 {
 font-size:20px;
 margin-top:50px;
-width:500px;
-margin-left:400px;
+width:37%;
+margin-left:auto;
+margin-right: auto;
 }
 #header-3 {
-width:30%;
+width:25%;
 height:3px;
 background:#999999;
 margin-top:80px;
@@ -240,32 +241,32 @@ margin-top: 100px;
 
 }
 #main-left {
-width:800px;
+width:60%;
 top:100px;
 margin: 0 auto;
 float:left;
 
 }
 #div1{
-width:500px;
-margin-left:100px;
+width:40%;
+margin-left:7.4%;
 margin-top:100px;
 
 }
 #div2{
-width:500px;
-margin-left:100px;
-margin-top:100px;
+width:40%;
+margin-left:7.4%;
+margin-top:7.4%;
 }
 #div3{
-width:500px;
-margin-left:100px;
-margin-top:100px;
+width:40%;
+margin-left:7.4%;
+margin-top:7.4%;
 }
 #div4{
-width:500px;
-margin-left:100px;
-margin-top:100px;
+width:40%;
+margin-left:7.4%;
+margin-top:7.4%;
 }
 
 .big {
@@ -277,18 +278,19 @@ margin:10px;
 font-size:20px;
 color:#000000;
 margin-top:20px;
+width: 100%;
 }
 .img1{
-width:86px;
-height:86px;
+width:85px;
+height:85px;
 margin-left:10px;
 background:url(../images/yinjian.png)  no-repeat center left;
 float:left;
 
 }
 .img2{
-width:86px;
-height:86px;
+width:85px;
+height:85px;
 margin-left:10px;
 background:url(../images/chanping.png) no-repeat center left;
 float:left;
@@ -365,7 +367,7 @@ display:none;
 #our-team {
 clear:both;
 width:100%;
-padding-top: 80px;
+padding-top: 6%;
 margin:0 auto;
 }
 #large {
@@ -379,7 +381,7 @@ width: 20%;
 }
 #little {
 margin: 0 auto;
-margin-top:100px;
+margin-top:7.4%;
 font-size:20px;
 letter-spacing:10px;
 font-weight:lighter;
@@ -387,58 +389,61 @@ width:30%;
 }
 #number {
 float:left;
-width:100px;
+width:10%;
 margin-left:300px;
-margin-top:100px;
+margin-top:7.4%;
 }
 #number-name {
 float:left;
-width:400px;
-margin-left:150px;
-margin-top:120px;
+width:30%;
+margin-left:15%;
+margin-top:8%;
 display:none;
 }
 #number-now {
-margin-top:20px;
+margin-top:15%;
 }
 #number-nine {
-margin-top:20px;
+margin-top:15%;
 }
 #number-eight{
-margin-top:20px;
+margin-top:15%;
 }
 #number-seven{
-margin-top:20px;
+margin-top:15%;
 }
 #number-six{
-margin-top:20px;
+margin-top:15%;
 }
 #number-five{
-margin-top:20px;
+margin-top:15%;
 }
 #number-four {
-margin-top:20px;
+margin-top:15%;
 }
 #number-three {
-margin-top:20px;
+margin-top:15%;
 }
 #number-two{
-margin-top:20px;
+margin-top:15%;
 }
 #number-one{
-margin-top:20px;
+margin-top:15%;
 }
 
 #contacts {
 clear:both;
 width:100%;
-margin: 0 auto;
+padding-top: 2%;
+margin-right: auto;
+margin-left: auto;
 }
 .line {
 width:10%;
 height:3px;
 background:#0066FF;
-margin-top:10px;
+margin-top:3%;
+
 margin: 0 auto;
 
 }
@@ -481,80 +486,82 @@ width:30%;
 
 }
 #contacts-way {
-margin-top: 100px;
+margin-top: 2%;
 margin-left: auto;
 margin-right: auto;
 width: 100%;
+height: 19%;
 overflow: hidden;
 }
 #one {
-width:100px;
-height:200px;
-background:url(../images/qq.png) no-repeat;
+width:7.4%;
+height:80%;
+background:url(../images/qq.png) no-repeat center;
 float:left;
-margin-left:240px;
-margin-top:50px;
+margin-left:16%;
+margin-top:10%;
 }
 #two {
-width:100px;
-height:200px;
-background:url(../images/Email.png) no-repeat;
+width:7.4%;
+height:80%;
+background:url(../images/Email.png) no-repeat center;
 float:left;
-margin-left:150px;
-margin-top:50px;
+margin-left:12%;
+margin-top:10%;
 }
 #three{
-width:100px;
-height:200px;
-background:url(../images/address.png) no-repeat;
+width:7.4%;
+height:80%;
+background:url(../images/address.png) no-repeat center;
 float:left;
-margin-left:150px;
-margin-top:50px;
+margin-left:12%;
+margin-top:10%;
 }
 #four {
-width:100px;
-height:200px;
-background:url(../images/Tel.png) no-repeat;
+width:7.4%;
+height:80%;
+background:url(../images/Tel.png) no-repeat center;
 float:left;
-margin-left:150px;
-margin-top:50px;
+margin-left:12%;
+margin-top:10%;
 }
 #qq {
-margin-top:130px;
-margin-left:30px;
+margin-top:200%;
+text-align: center;
 color:#CC0066;
 }
 #email{
-margin-top:130px;
-margin-left:30px;
+margin-top:200%;
+text-align: center;
 color:#CC0066;
 }
 #site{
-margin-top:130px;
-margin-left:30px;
+margin-top:200%;
+text-align: center;
 color:#CC0066;
 }
 #tel {
-margin-top:130px;
-margin-left:30px;
+margin-top:200%;
+
 color:#CC0066;
+text-align: center;
 }
 #find-us {
 width: 45%;
-margin-top: 100px;
+margin-top: 8%;
 margin-left: auto;
 margin-right: auto;
 font-size:30px;
 font-weight:lighter;
 letter-spacing:30px;
-padding-left: 300px;
+padding-left: 22%;
 
 }
 #map {
 width:50%;
 height:400px;
-background:url(../images/map.png);
+background:url(../images/map.png) no-repeat center;
 margin-left: auto;
 margin-right: auto;
-margin-top:100px;
+margin-top:8%;
 }
