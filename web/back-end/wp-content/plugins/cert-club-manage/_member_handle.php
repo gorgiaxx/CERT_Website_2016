@@ -130,14 +130,6 @@ require_once 'content.php';
 	<div class="postbox">
 		<div class="inside">
 			<form action="" method="post" class="edit-template-form">
-				<?php
-wp_enqueue_media();
-wp_enqueue_script('plupload-handlers');
-wp_enqueue_script('image-edit');
-wp_enqueue_script('set-post-thumbnail');
-wp_enqueue_style('imgareaselect');
-wp_enqueue_script('media-gallery');
-?>
 				<input type="hidden" name="edit" value="<?php echo $current_id; ?>
 				" />
 				<input type="hidden" name="page" value="<?php echo WPCCM_MEMBER_PAGE; ?>
@@ -232,10 +224,20 @@ wp_enqueue_script('media-gallery');
 						<table class="form-table">
 							<tr valign="top">
 								<th scope="row">
+									<label>头像</label>
+								</th>
+								<td>
+									<img id="upload_face" src="" style="width: 80px;height: 80px;" alt="点击上传">
+									<input type="hidden" name="face_url" value="<?php echo @$member->link; ?>" class="middle-text"/>
+								</td>
+							</tr>
+							<tr valign="top">
+								<th scope="row">
 									<label>博客链接</label>
 								</th>
 								<td>
-									<input type="text" name="link" value="<?php echo @$member->link; ?>" class="middle-text"/></td>
+									<input type="text" name="link" value="<?php echo @$member->link; ?>" class="middle-text"/>
+								</td>
 							</tr>
 							<tr valign="top">
 								<th scope="row">
@@ -263,25 +265,10 @@ wp_enqueue_script('media-gallery');
 					<a href="<?php echo menu_page_url(WPCCM_MEMBER_PAGE, false) . '&delete=' . $current_id; ?>">删除</a>
 				</div>
 				<?php endif;?></form>
-			<div id="postimagediv" class="postbox ">
-				<button type="button" class="handlediv button-link" aria-expanded="true">
-					<span class="screen-reader-text">切换面板：特色图片</span>
-					<span class="toggle-indicator" aria-hidden="true"></span>
-				</button>
-				<h2 class="hndle ui-sortable-handle">
-					<span>特色图片</span>
-				</h2>
-				<div class="inside">
-					<p class="hide-if-no-js">
-						<a id="set-post-thumbnail" class="thickbox">设为特色图像</a>
-					</p>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
 <!--wrap-->
-
 <!-- model -->
 <div id="hide-modal" style="display: none; width:800px; position:absolute;" class="hide-modal-content">
 	<div class="hide-modal-body"></div>
