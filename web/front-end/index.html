@@ -619,7 +619,7 @@
 			</div>
 			<div class="contact-address">
 				<h3>FIND <span>US</span></h3>
-				<div id="map">这里要用到百度地图API，我要去学学学学学学学学学学学学学学学学学学学学学学学学学学学学学学</div>
+				<div id="map"></div>
 			</div>
 		</section>
 
@@ -644,22 +644,8 @@
 
 		// overview的打开和关闭效果
 		var status1 = 1,status2 = 0,status3 = 0;
-		// var status[3];
-		// status[0]=1;
-		// status[1]=0;
-		// status[2]=0;
 
 		function changeBG(){
-			// for(var i=0;i<=2;i++){
-			// 	var className=".overview"+(i+1)+" "+".over-flag";
-			// 	alert(className);
-			// 	if (status[i]) {
-			// 		$(className).css("background-image","url(images/flag_close.png)");
-			// 	}
-			// 	else{
-			// 		$(className).css("background-image","url(images/flag_open.png)");
-			// 	}
-			// }
 			if (status1) {
 				$(".overview1 .over-flag").css("background-image","url(images/flag_close.png)");
 			}
@@ -687,9 +673,6 @@
 			status1=1-status1;
 			status2=0;
 			status3=0;
-			// status[0]=1-status[0];
-			// status[1]=0;
-			// status[2]=0;
 			changeBG();
 		});
 
@@ -700,9 +683,6 @@
 			status1=0;
 			status2=1-status2;
 			status3=0;
-			// status[0]=0;
-			// status[1]=1-status[1];
-			// status[2]=0;
 			changeBG();
 		});
 
@@ -713,9 +693,6 @@
 			status1=0;
 			status2=0;
 			status3=1-status3;
-			// status[0]=0;
-			// status[1]=0;
-			// status[2]=1-status[2];
 			changeBG();
 		});
 
@@ -766,17 +743,6 @@
 				$(content).hide();
 			}
 		}
-		// for (var i = 1; i <= 10; i++) {
-		// 	var button = ".list" + i;
-		// 	var showContent = ".team-member" + i;
-		// 	$(button).click(function(){
-		// 		for(var j = 1;j <= 10;j++) {
-		// 			var hideContent = ".team-member" + j;
-		// 			$(hideContent).hide();
-		// 		}
-		// 		$(showContent).show();
-		// 	});
-		// };
 
 		// 百度地图API功能
 		var map = new BMap.Map("map");
@@ -789,7 +755,7 @@
 		  height: 100,     // 信息窗口高度
 		  title : "计算机紧急响应组" , // 信息窗口标题
 		}
-		var infoWindow = new BMap.InfoWindow("华东交通大学。。。。", opts);  // 创建信息窗口对象 
+		var infoWindow = new BMap.InfoWindow("华东交通大学 南区教7栋105 计算机紧急响应组办公室", opts);  // 创建信息窗口对象 
 		marker.addEventListener("click", function(){          
 			map.openInfoWindow(infoWindow,point); //开启信息窗口
 		});

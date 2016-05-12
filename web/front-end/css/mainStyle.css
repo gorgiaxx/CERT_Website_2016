@@ -260,14 +260,14 @@ section > hr
 {
 	margin: 100px auto;
 }
-.contact-address div
+.contact-address span
+{
+	color: #00a0e9;
+}
+#map
 {
 	margin: 50px auto;
 	
 	width: 700px;
 	height: 700px;
-}
-.contact-address span
-{
-	color: #00a0e9;
 }
