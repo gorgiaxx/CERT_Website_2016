@@ -81,7 +81,7 @@ html,body
 	margin-left: auto;
 	margin-right: auto;
 
-	width: 1000px;
+	width: 80%;
 }
 .container > hr
 {
@@ -126,8 +126,6 @@ section > hr
 .department div{display: inline-block;}
 .depar-list
 {
-	/*float: left;*/
-
 	width: 510px;
 }
 .depar-list > div
@@ -192,7 +190,7 @@ section > hr
 
 	padding-left: 20px;
 	padding-right: 20px;
-	width: 410px;
+	width: 440px;
 
 	font-size: 25px;
 	font-weight: bold;
@@ -210,7 +208,7 @@ section > hr
 	margin-left: 20px;
 	margin-right: 20px;
 
-	width: 510px;
+	width: 480px;
 
 	font-size: 25px;
 
@@ -270,4 +268,192 @@ section > hr
 	
 	width: 700px;
 	height: 700px;
+}
+
+
+
+
+/*屏幕分辨率宽度小于等于1000px时*/
+@media screen and (max-width: 1000px)
+{
+
+.slide-content
+{
+	width: 350px;
+}
+.container
+{
+	width: 90%;
+}
+.container h1
+{
+	font-size:50px;
+}
+.container h2
+{
+	font-size: 15px;
+}
+.department div{display: block;}
+.depar-list
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+.depar-list > div > div{display: inline-block;}
+.depar-overview
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 510px;
+
+	float: none;
+}
+.over-content
+{
+	width: 500px;
+}
+.team-list
+{
+	padding-left: 0px;
+    padding-right: 50px;
+    width: 300px;
+
+    font-size: 20px;
+    float: none;
+}
+.team-member
+{
+	width: 280px;
+    font-size: 17px;
+    float: right;
+}
+.contact-icon
+{
+	width: 90px;
+    height: 90px;
+    line-height: 140px;
+}
+
+}
+
+
+
+
+/*屏幕分辨率小于等于750px*/
+@media screen and (max-width: 750px)
+{
+	
+.slide-content
+{
+	width: 300px;
+}
+.slide-content h1
+{
+	font-size: 70px;
+}
+.slide-content hr
+{
+	height: 5px;
+}
+.slide-content div
+{
+	width: 240px;
+    height: 80px;
+    font-size: 30px;
+    line-height: 80px;
+}
+.container h1{font-size: 25px;}
+.department h1 span{display: block;}
+.container h2
+{
+	margin-top: 18px;
+    padding: 0 5px;
+}
+section > hr{margin: 35px auto;}
+.depar-list{width: 300px;}
+.depar-list > div{margin-bottom: 25px;}
+.depar-list-icon
+{
+	width: 60px;
+    height: 60px;
+}
+.depar-list-icon img
+{
+	width: 60px;
+	height: 60px;
+}
+.depar-list-intro
+{
+	margin-left: 3px;
+    width: 210px;
+}
+.depar-list-intro h3
+{
+	font-size: 23px;
+}
+.depar-list-intro p
+{
+	margin-top: 5px;
+    font-size: 15px;
+}
+.depar-overview
+{
+	width: 300px;
+}
+.over-content
+{
+	width: 280px;
+}
+.depar-overview h3
+{
+	font-size: 23px;
+}
+.over-content p{font-size: 15px}
+.team-member{float: none;}
+.contact-icon
+{
+	width: 50px;
+    height: 50px;
+    line-height: 67px;
+}
+.contact-icon img
+{
+	width: 30px;
+	height: 30px;
+}
+.contact h3{font-size: 25px;}
+.contact-way h4
+{
+	margin-top: 10px;
+	font-size: 17px;
+}
+.contact-way p{font-size: 15px;}
+#map
+{
+	margin: 20px auto;
+    width: 300px;
+    height: 300px;
+}
+
+}
+
+
+
+
+/*屏幕分辨率宽度小于等于524px*/
+@media screen and (max-width: 524px) and (min-width: 365px)
+{
+
+.contact-icon
+{
+	width: 100px;
+    height: 100px;
+    line-height: 140px;
+}
+.contact-icon img
+{
+	width: 60px;
+    height: 60px;
+}
+
 }
