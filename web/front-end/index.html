@@ -128,7 +128,7 @@
 			<hr>
 
 			<div class="team-list">
-				<div class="list1">现任管理团队</div>
+				<div class="list1 active">现任管理团队</div>
 				<hr>
 				<div class="list2">第九届管理团队</div>
 				<hr>
@@ -698,49 +698,75 @@
 
 		// 团队成员点击切换团队
 		$(".list1").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member1").show();
+			$(".list1").addClass("active");
 		});
 		$(".list2").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member2").show();
+			$(".list2").addClass("active");
 		});
 		$(".list3").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member3").show();
+			$(".list3").addClass("active");
 		});
 		$(".list4").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member4").show();
+			$(".list4").addClass("active");
 		});
 		$(".list5").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member5").show();
+			$(".list5").addClass("active");
 		});
 		$(".list6").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member6").show();
+			$(".list6").addClass("active");
 		});
 		$(".list7").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member7").show();
+			$(".list7").addClass("active");
 		});
 		$(".list8").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member8").show();
+			$(".list8").addClass("active");
 		});
 		$(".list9").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member9").show();
+			$(".list9").addClass("active");
 		});
 		$(".list10").click(function(){
+			unactive();
 			hideContent();
 			$(".team-member10").show();
+			$(".list10").addClass("active");
 		});
 		function hideContent() {
 			for(var i=1;i<=10;i++) {
-				content=".team-member"+i;
+				var content=".team-member"+i;
 				$(content).hide();
+			}
+		}
+		function unactive(){
+			for(var i=1;i<=10;i++) {
+				var unactiveList=".list"+i;
+				$(unactiveList).removeClass("active");
 			}
 		}
 
