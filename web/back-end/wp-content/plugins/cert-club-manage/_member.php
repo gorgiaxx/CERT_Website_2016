@@ -17,6 +17,7 @@ foreach ($raw as $d) {
 		'ID' => $d->id,
 		'student_id' => $d->student_id,
 		'username' => $d->username,
+		'phone_number' => $d->phone_number,
 		'classname' => $d->classname,
 		'department' => $d->department_name,
 		'position' => $d->position_name,

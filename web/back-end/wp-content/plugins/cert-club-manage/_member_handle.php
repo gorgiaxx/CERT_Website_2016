@@ -47,6 +47,9 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	if (empty($_POST['username'])) {
 		$errors->add("username", "请输入姓名！");
 	}
+	if (empty($_POST['phone_number'])) {
+		$errors->add("phone_number", "请输入手机号！");
+	}
 	if (empty($_POST['classname'])) {
 		$errors->add("classname", "请输入班级名！");
 	}
@@ -62,6 +65,7 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	$member = array();
 	$member["student_id"] = sanitize_text_field($_POST['student_id']);
 	$member["username"] = sanitize_text_field($_POST['username']);
+	$member["phone_number"] = sanitize_text_field($_POST['phone_number']);
 	$member["classname"] = sanitize_text_field($_POST['classname']);
 	$member["department_id"] = intval($_POST['department_id']);
 	$member["position_id"] = intval($_POST['position_id']);
@@ -78,6 +82,7 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 			'wp_member',
 			$member,
 			array(
+				'%s',
 				'%s',
 				'%s',
 				'%s',
@@ -119,7 +124,7 @@ require_once 'content.php';
 <?php echo $content['header']; ?>
 <?php echo $content['tips_content']; ?>
 <hr>
-<h2>添加成员</h2>
+<h2><?php if (empty($_GET['edit'])) echo "添加成员"; else echo "编辑成员"; ?></h2>
 <br>
 <?php if (isset($errors) && is_wp_error($errors)): ?>
 <div class="error">
@@ -150,6 +155,13 @@ require_once 'content.php';
 						</th>
 						<td>
 							<input type="text" name="username" value="<?php echo @$member->username; ?>" class="middle-text"/></td>
+					</tr>
+					<tr valign="top">
+						<th scope="row">
+							<label>手机号</label>
+						</th>
+						<td>
+							<input type="text" name="phone_number" value="<?php echo @$member->phone_number; ?>" class="middle-text"/></td>
 					</tr>
 					<tr valign="top">
 						<th scope="row">
@@ -227,8 +239,8 @@ require_once 'content.php';
 									<label>头像</label>
 								</th>
 								<td>
-									<img id="upload_face" src="" style="width: 80px;height: 80px;" alt="点击上传">
-									<input type="hidden" name="face_url" value="<?php echo @$member->link; ?>" class="middle-text"/>
+									<img id="upload_face" src="<?php echo $member->face_url; ?>" style="width: 80px;height: 80px;" alt="点击上传">
+									<input type="hidden" name="face_url" value="<?php echo $member->face_url; ?>" class="middle-text"/>
 								</td>
 							</tr>
 							<tr valign="top">

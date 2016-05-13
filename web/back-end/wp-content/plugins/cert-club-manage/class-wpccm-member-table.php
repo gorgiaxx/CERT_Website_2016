@@ -29,6 +29,7 @@ class WPCCM_Member_Table extends WP_List_Table {
 		switch ($column_name) {
 		case 'student_id':
 		case 'username':
+		case 'phone_number':
 		case 'classname':
 		case 'department':
 		case 'position':
@@ -55,6 +56,7 @@ class WPCCM_Member_Table extends WP_List_Table {
 			'cb' => '<input type="checkbox" />',
 			'student_id' => '学号',
 			'username' => '姓名',
+			'phone_number' => '手机号',
 			'classname' => '班级名',
 			'department' => '部门',
 			'position' => '职位',
@@ -106,6 +108,16 @@ class WPCCM_Member_Table extends WP_List_Table {
 		return sprintf(
 			'<input type="checkbox" name="delete[]" value="%s" />', $item['ID']
 		);
+	}
+
+	public function column_face_url($item) {
+		if (!empty($item['face_url'])) {
+			return sprintf(
+			'<img src="%s" style="width:36px;height:36px;"/>',$item['face_url'] 
+		);
+		} else {
+			return "";
+		}
 	}
 
 	public function column_action($item) {
