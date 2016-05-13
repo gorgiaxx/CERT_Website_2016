@@ -202,6 +202,16 @@ section > hr
 	height: 50px;
 	line-height: 50px;
 	padding-left: 40px;
+
+	cursor: pointer;
+}
+.active
+{
+	color: #56beb9;
+
+	background-image: url(../images/active.png);
+	background-repeat: no-repeat;
+	background-position:0 50%;
 }
 .team-member
 {
