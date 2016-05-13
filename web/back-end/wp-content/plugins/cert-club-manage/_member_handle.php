@@ -26,7 +26,7 @@ if (isset($_GET['delete'])) {
 } else {
 	$department = $wpdb->get_results("SELECT id,department_name FROM wp_department");
 	$position = $wpdb->get_results("SELECT id,position_name FROM wp_position");
-	if (isset($_GET['edit'])) {
+	if (!empty($_GET['edit'])) {
 		$current_id = (int) $_GET['edit'];
 		$member = $wpdb->get_row("SELECT * FROM wp_member WHERE id = " . $current_id);
 	} else {
@@ -212,7 +212,7 @@ require_once 'content.php';
 						</th>
 						<td>
 							<label>
-								<input type="checkbox" name="show_depart" value="publish" <?php echo @$member->show_depart ? 'checked' : ''; ?>
+								<input type="checkbox" name="show_depart" <?php echo @$member->show_depart ? 'checked' : ''; ?>
 								/>显示
 							</label>
 						</td>
@@ -223,7 +223,7 @@ require_once 'content.php';
 						</th>
 						<td>
 							<label>
-								<input type="checkbox" name="show_famehall" value="publish" <?php echo @$member->show_famehall ? 'checked' : ''; ?>
+								<input type="checkbox" name="show_famehall" <?php echo @$member->show_famehall ? 'checked' : ''; ?>
 								/>显示
 							</label>
 						</td>
