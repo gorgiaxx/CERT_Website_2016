@@ -1,11 +1,5 @@
 <?php
-/* -------------------------------------------- *
- * Class Definition		*
- * -------------------------------------------- */
-
-//This part is our very own WP_List_Table
-
-class WPCCM_Member_Table extends WP_List_Table {
+class WPCCM_Product_Table extends WP_List_Table {
 
 	private $rawData = array();
 	private $found_data = array();
@@ -27,15 +21,11 @@ class WPCCM_Member_Table extends WP_List_Table {
 
 	public function column_default($item, $column_name) {
 		switch ($column_name) {
-		case 'student_id':
-		case 'username':
-		case 'phone_number':
-		case 'classname':
-		case 'department':
-		case 'position':
-		case 'join_time':
-		case 'face_url':
-		case 'introduction':
+		case 'product_name':
+		case 'product_name_en':
+		case 'thumb_img':
+		case 'weight':
+		case 'orders':
 			return $item[$column_name];
 		default:
 			return print_r($item, true); //Show the whole array for troubleshooting purposes
@@ -44,9 +34,8 @@ class WPCCM_Member_Table extends WP_List_Table {
 
 	public function get_sortable_columns() {
 		$sortable_columns = array(
-			'department' => array('department', false),
-			'position' => array('position', false),
-			'join_time' => array('join_time', false),
+			'weight' => array('weight', false),
+			'product_name' => array('ID', false),
 		);
 		return $sortable_columns;
 	}
@@ -54,15 +43,10 @@ class WPCCM_Member_Table extends WP_List_Table {
 	public function get_columns() {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
-			'student_id' => '学号',
-			'username' => '姓名',
-			'phone_number' => '手机号',
-			'classname' => '班级名',
-			'department' => '部门',
-			'position' => '职位',
-			'join_time' => '加入时间',
-			'face_url' => '头像',
-			'introduction' => '自我介绍',
+			'product_name' => '产品名',
+			'product_name_en' => '产品英文标识',
+			'thumb_img' => '预览图',
+			'weight' => '权重',
 			'action' => '操作',
 		);
 		return $columns;
@@ -70,9 +54,9 @@ class WPCCM_Member_Table extends WP_List_Table {
 
 	public function usort_reorder($a, $b) {
 		// If no sort, default to title
-		$orderby = (!empty($_GET['orderby'])) ? $_GET['orderby'] : 'ID';
+		$orderby = (!empty($_GET['orderby'])) ? $_GET['orderby'] : 'weight';
 		// If no order, default to asc
-		$order = (!empty($_GET['order'])) ? $_GET['order'] : 'desc';
+		$order = (!empty($_GET['order'])) ? $_GET['order'] : 'asc';
 		// Determine sort order
 		$result = strcmp($a[$orderby], $b[$orderby]);
 		// Send final sort direction to usort
@@ -82,27 +66,9 @@ class WPCCM_Member_Table extends WP_List_Table {
 	public function get_bulk_actions() {
 		$actions = array(
 			'delete' => "删除",
-			// 'show_depart' => "在部门里显示",
-			// 'show_famewall' => "在名人堂显示",
 		);
 		return $actions;
 	}
-
-//	public function process_bulk_action() {
-	//
-	//	    if ( 'delete' === $this->current_action() ) {
-	//	    	if(isset($_GET['tpl'])){
-	//		        foreach($_GET['tpl'] as $tpl){
-	//		        	foreach($this->rawData as $key=>$dt){
-	//		        		if($dt['ID']==$tpl){
-	//		        			unset($this->rawData[$key]);
-	//		        		}
-	//		        	}
-	//
-	//		        }
-	//	        }
-	//	    }
-	//	}
 
 	public function column_cb($item) {
 		return sprintf(
@@ -110,10 +76,10 @@ class WPCCM_Member_Table extends WP_List_Table {
 		);
 	}
 
-	public function column_face_url($item) {
-		if (!empty($item['face_url'])) {
+	public function column_thumb_img($item) {
+		if (!empty($item['thumb_img'])) {
 			return sprintf(
-			'<img src="%s" style="width:36px;height:36px;"/>',$item['face_url'] 
+			'<img src="%s" style="width:80px;height:auto;"/>',$item['thumb_img'] 
 		);
 		} else {
 			return "";
@@ -122,7 +88,7 @@ class WPCCM_Member_Table extends WP_List_Table {
 
 	public function column_action($item) {
 		return sprintf(
-			'<a href="' . menu_page_url(WPCCM_MEMBER_PAGE, false) . '&edit=%s">编辑</a>&nbsp;<a href="' . menu_page_url(WPCCM_MEMBER_PAGE, false) . '&delete=%s">删除</a>', $item['ID'], $item['ID']
+			'<a href="' . menu_page_url(WPCCM_PRODUCT_PAGE, false) . '&edit=%s">编辑</a>&nbsp;<a href="' . menu_page_url(WPCCM_PRODUCT_PAGE, false) . '&delete=%s">删除</a>', $item['ID'], $item['ID']
 		);
 	}
 

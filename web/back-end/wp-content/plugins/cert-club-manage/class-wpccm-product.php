@@ -1,8 +1,9 @@
 <?php
 class WPCCM_Product {
 
-	private $file_depart_tpl = '_product.php';
-	private $file_charts_tpl = '_charts.php';
+	private $file_product_tpl = '_product.php';
+	private $file_product_handle_tpl = '_product_handle.php';
+
 
 	private static $_instance;
 
@@ -51,8 +52,8 @@ class WPCCM_Product {
 	 * Options page callback
 	 */
 	public function create_admin_page() {
-		if (isset($_GET['charts'])) {
-			require_once $this->file_charts_tpl;
+		if (isset($_GET['delete']) || isset($_GET['edit']) ) {
+			require_once $this->file_product_handle_tpl;
 		} else {
 			require_once $this->file_product_tpl;
 		}

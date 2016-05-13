@@ -47,9 +47,6 @@ class WPCCM_Member {
 		);
 	}
 
-	/**
-	 * Options page callback
-	 */
 	public function create_admin_page() {
 		if (isset($_GET['edit']) || isset($_GET['delete'])) {
 			require_once $this->file_member_handle_tpl;

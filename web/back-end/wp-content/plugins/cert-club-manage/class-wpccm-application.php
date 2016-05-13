@@ -2,7 +2,7 @@
 class WPCCM_Application {
 
 	private $file_application_tpl = '_application.php';
-	private $file_edit_tpl = '_edit.php';
+	private $file_application_handle_tpl = '_application_handle.php';
 
 	private static $_instance;
 
@@ -51,8 +51,8 @@ class WPCCM_Application {
 	 * Options page callback
 	 */
 	public function create_admin_page() {
-		if (isset($_GET['edit'])) {
-			require_once $this->file_edit_tpl;
+		if (isset($_GET['pass']) || isset($_GET['check']) || isset($_GET['unpass']) || isset($_GET['uncheck']) || isset($_GET['delete'])) {
+			require_once $this->file_application_handle_tpl;
 		} else {
 			require_once $this->file_application_tpl;
 		}

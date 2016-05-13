@@ -19,7 +19,6 @@ define('WPCCM_MEMBER_PAGE', 'wpccm-member-page');
 define('WPCCM_DEPART_PAGE', 'wpccm-depart-page');
 define('WPCCM_POSITION_PAGE', 'wpccm-position-page');
 define('WPCCM_APPLICATION_PAGE', 'wpccm-application-page');
-define('WPCCM_LEADERSHIP_PAGE', 'wpccm-leadership-page');
 define('WPCCM_PRODUCT_PAGE', 'wpccm-product-page');
 define('WPCCM_SETTINGS_PAGE', 'wpccm-settings-page');
 define('WPCCM_SETTINGS_OPTION', 'wpccm_settings_option');
@@ -48,7 +47,6 @@ function wpccm_admin_setup() {
 		require_once 'class-wpccm-depart.php';
 		require_once 'class-wpccm-position.php';
 		require_once 'class-wpccm-application.php';
-		require_once 'class-wpccm-leadership.php';
 		require_once 'class-wpccm-product.php';
 		//Settings
 		$settingObject = WPCCM_Settings::get_instance();
@@ -60,8 +58,6 @@ function wpccm_admin_setup() {
 		$positionObject = WPCCM_Position::get_instance();
 		//Application
 		$applicationObject = WPCCM_Application::get_instance();
-		//Leadership
-		$leadershipObject = WPCCM_Leadership::get_instance();
 		//Product
 		$productObject = WPCCM_Product::get_instance();
 	}

@@ -1,11 +1,5 @@
 <?php
-/* -------------------------------------------- *
- * Class Definition		*
- * -------------------------------------------- */
-
-//This part is our very own WP_List_Table
-
-class WPCCM_Member_Table extends WP_List_Table {
+class WPCCM_Application_Table extends WP_List_Table {
 
 	private $rawData = array();
 	private $found_data = array();
@@ -29,13 +23,14 @@ class WPCCM_Member_Table extends WP_List_Table {
 		switch ($column_name) {
 		case 'student_id':
 		case 'username':
-		case 'phone_number':
 		case 'classname':
-		case 'department':
-		case 'position':
-		case 'join_time':
-		case 'face_url':
 		case 'introduction':
+		case 'department_name':
+		case 'email':
+		case 'phone_number':
+		case 'pass':
+		case 'check':
+		case 'create_time':
 			return $item[$column_name];
 		default:
 			return print_r($item, true); //Show the whole array for troubleshooting purposes
@@ -44,9 +39,8 @@ class WPCCM_Member_Table extends WP_List_Table {
 
 	public function get_sortable_columns() {
 		$sortable_columns = array(
-			'department' => array('department', false),
-			'position' => array('position', false),
-			'join_time' => array('join_time', false),
+			'create_time' => array('create_time', false),
+			'student_id' => array('student_id', false),
 		);
 		return $sortable_columns;
 	}
@@ -56,13 +50,14 @@ class WPCCM_Member_Table extends WP_List_Table {
 			'cb' => '<input type="checkbox" />',
 			'student_id' => '学号',
 			'username' => '姓名',
+			'classname' => '班级',
+			'introduction' => '介绍',
+			'department_name' => '意向部门',
+			'email' => '邮箱',
 			'phone_number' => '手机号',
-			'classname' => '班级名',
-			'department' => '部门',
-			'position' => '职位',
-			'join_time' => '加入时间',
-			'face_url' => '头像',
-			'introduction' => '自我介绍',
+			'pass' => '面试通过',
+			'check' => '考核通过',
+			'create_time' => '申请时间',
 			'action' => '操作',
 		);
 		return $columns;
@@ -72,7 +67,7 @@ class WPCCM_Member_Table extends WP_List_Table {
 		// If no sort, default to title
 		$orderby = (!empty($_GET['orderby'])) ? $_GET['orderby'] : 'ID';
 		// If no order, default to asc
-		$order = (!empty($_GET['order'])) ? $_GET['order'] : 'desc';
+		$order = (!empty($_GET['order'])) ? $_GET['order'] : 'asc';
 		// Determine sort order
 		$result = strcmp($a[$orderby], $b[$orderby]);
 		// Send final sort direction to usort
@@ -82,27 +77,11 @@ class WPCCM_Member_Table extends WP_List_Table {
 	public function get_bulk_actions() {
 		$actions = array(
 			'delete' => "删除",
-			// 'show_depart' => "在部门里显示",
-			// 'show_famewall' => "在名人堂显示",
+			// 'enable' => "通过面试",
+			// 'disable' => "取消面试",慎重对待，不做批量
 		);
 		return $actions;
 	}
-
-//	public function process_bulk_action() {
-	//
-	//	    if ( 'delete' === $this->current_action() ) {
-	//	    	if(isset($_GET['tpl'])){
-	//		        foreach($_GET['tpl'] as $tpl){
-	//		        	foreach($this->rawData as $key=>$dt){
-	//		        		if($dt['ID']==$tpl){
-	//		        			unset($this->rawData[$key]);
-	//		        		}
-	//		        	}
-	//
-	//		        }
-	//	        }
-	//	    }
-	//	}
 
 	public function column_cb($item) {
 		return sprintf(
@@ -110,10 +89,26 @@ class WPCCM_Member_Table extends WP_List_Table {
 		);
 	}
 
-	public function column_face_url($item) {
-		if (!empty($item['face_url'])) {
+	public function column_pass($item) {
+		if ($item['pass'] == 0) {
+			return "未通过";
+		} else {
+			return "已通过";
+		}
+	}
+
+	public function column_check($item) {
+		if ($item['check'] == 0) {
+			return "未通过";
+		} else {
+			return "已通过";
+		}
+	}
+
+	public function column_background($item) {
+		if (!empty($item['background'])) {
 			return sprintf(
-			'<img src="%s" style="width:36px;height:36px;"/>',$item['face_url'] 
+			'<img src="%s" style="width:86px;height:auto;"/>',$item['background'] 
 		);
 		} else {
 			return "";
@@ -121,9 +116,12 @@ class WPCCM_Member_Table extends WP_List_Table {
 	}
 
 	public function column_action($item) {
-		return sprintf(
-			'<a href="' . menu_page_url(WPCCM_MEMBER_PAGE, false) . '&edit=%s">编辑</a>&nbsp;<a href="' . menu_page_url(WPCCM_MEMBER_PAGE, false) . '&delete=%s">删除</a>', $item['ID'], $item['ID']
-		);
+		$string = '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&delete=%s">删除</a><br />';
+		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&pass=%s">通过面试</a>&nbsp;&nbsp;';
+		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&check=%s">通过考核</a><br />';
+		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&unpass=%s">取消面试</a>&nbsp;&nbsp;';
+		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&uncheck=%s">取消考核</a>';
+		return sprintf($string, $item['ID'],$item['ID'],$item['ID'],$item['ID'],$item['ID']);
 	}
 
 	public function extra_tablenav($which) {

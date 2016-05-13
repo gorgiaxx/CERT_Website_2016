@@ -2,7 +2,7 @@
 require_once 'class-wpccm-depart-table.php';
 global $wpdb;
 
-$raw = $wpdb->get_results("select * FROM `wp_department` order by `orders` ASC");
+$raw = $wpdb->get_results("select * FROM `wp_department`");
 
 $data = array();
 foreach ($raw as $d) {

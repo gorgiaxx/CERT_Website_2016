@@ -2,7 +2,7 @@
 class WPCCM_Position {
 
 	private $file_position_tpl = '_position.php';
-	private $file_charts_tpl = '_charts.php';
+	private $file_position_handle_tpl = '_position_handle.php';
 
 	private static $_instance;
 
@@ -46,13 +46,9 @@ class WPCCM_Position {
 			array($this, 'create_admin_page')
 		);
 	}
-
-	/**
-	 * Options page callback
-	 */
 	public function create_admin_page() {
-		if (isset($_GET['charts'])) {
-			require_once $this->file_charts_tpl;
+		if (isset($_GET['edit']) || isset($_GET['delete'])) {
+			require_once $this->file_position_handle_tpl;
 		} else {
 			require_once $this->file_position_tpl;
 		}
