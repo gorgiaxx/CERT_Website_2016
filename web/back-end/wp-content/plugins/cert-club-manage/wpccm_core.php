@@ -72,13 +72,10 @@ function safe_redirect() {
 
 }
 //Scripts
-add_action('admin_print_scripts', 'custom_admin_scripts');
+
 //add custom upload jquery support.
 function custom_admin_scripts() {
 	wp_enqueue_script('jquery');
-	wp_enqueue_media();
-	wp_register_script('custom-upload', WPCCM_PLUGIN_URL . '/js/custom_upload.js', array('jquery', 'media-upload', 'thickbox'), "2.0");
-	wp_enqueue_script('custom-upload');
 	wp_register_script('modal', WPCCM_PLUGIN_URL . '/js/modal.js', array(), "2.0");
 	wp_enqueue_script('modal');
 }

@@ -48,8 +48,10 @@ class WPCCM_Member {
 	}
 
 	public function create_admin_page() {
-		if (isset($_GET['edit']) || isset($_GET['delete'])) {
+		if (isset($_GET['edit']) || isset($_GET['delete']) || isset($_GET['export'])) {
 			require_once $this->file_member_handle_tpl;
+		} elseif (@$_POST['Submit']) {
+			require_once '_member_export.php';
 		} else {
 			require_once $this->file_member_tpl;
 		}

@@ -58,7 +58,7 @@ require_once 'content.php';
 	<ul class="subsubsub">
 		<li class="all"><a href="<?php menu_page_url(WPCCM_APPLICATION_PAGE);?>"<?php echo @$all_current;?>>全部</a> |</li>
 		<li class="check"><a href="<?php menu_page_url(WPCCM_APPLICATION_PAGE);?>&sort=check"<?php echo @$check_current;?>>通过考核</a> |</li>
-		<li class="pass"><a href="<?php menu_page_url(WPCCM_APPLICATION_PAGE);?>&sort=pass"<?php echo @$pass_current;?>>通过面试</a> |</li>
+		<li class="pass"><a href="<?php menu_page_url(WPCCM_APPLICATION_PAGE);?>&sort=pass"<?php echo @$pass_current;?>>只通过面试</a> |</li>
 		<li class="unpass"><a href="<?php menu_page_url(WPCCM_APPLICATION_PAGE);?>&sort=unpass"<?php echo @$unpass_current;?>>未通过面试</a></li>
 	</ul>
 	<form action="" method="get">

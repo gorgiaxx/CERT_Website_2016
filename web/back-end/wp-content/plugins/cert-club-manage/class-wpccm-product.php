@@ -4,7 +4,6 @@ class WPCCM_Product {
 	private $file_product_tpl = '_product.php';
 	private $file_product_handle_tpl = '_product_handle.php';
 
-
 	private static $_instance;
 
 	/**
@@ -26,6 +25,10 @@ class WPCCM_Product {
 
 	private function __construct() {
 		add_action('admin_menu', array($this, 'add_plugin_page'));
+		add_action('admin_print_scripts', 'custom_admin_scripts');
+		wp_enqueue_media();
+		wp_register_script('custom-upload', WPCCM_PLUGIN_URL . '/js/custom_upload.js', array('jquery', 'media-upload', 'thickbox'), "2.0");
+		wp_enqueue_script('custom-upload');
 	}
 
 	/**
@@ -52,7 +55,7 @@ class WPCCM_Product {
 	 * Options page callback
 	 */
 	public function create_admin_page() {
-		if (isset($_GET['delete']) || isset($_GET['edit']) ) {
+		if (isset($_GET['delete']) || isset($_GET['edit'])) {
 			require_once $this->file_product_handle_tpl;
 		} else {
 			require_once $this->file_product_tpl;

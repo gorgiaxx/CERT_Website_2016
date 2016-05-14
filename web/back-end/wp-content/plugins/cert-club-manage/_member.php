@@ -2,6 +2,8 @@
 require_once 'class-wpccm-member-table.php';
 global $wpdb;
 
+add_action('admin_print_scripts', 'custom_admin_scripts');
+
 if (isset($_GET['s'])) {
 	$keyword = "where wp_member.username like '%" . sanitize_text_field($_GET['s']) . "%'";
 } else {
@@ -48,8 +50,8 @@ require_once 'content.php';
 	<h2>
 	成员列表
 	<a href="<?php menu_page_url(WPCCM_MEMBER_PAGE);?>&edit" class="add-new-h2">添加成员</a>
+	<a href="<?php menu_page_url(WPCCM_MEMBER_PAGE);?>&export" class="add-new-h2">导出表格</a>
 	</h2>
-	<br>
 	<form action="" method="get">
 		<?php $wp_list_table->search_box("请输入姓名", 'username');?>
 		<input type="hidden" name="page" value="<?php echo WPCCM_MEMBER_PAGE; ?>" />

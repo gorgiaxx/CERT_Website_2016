@@ -35,7 +35,6 @@ require_once 'content.php';
 	职位列表
 	<a href="<?php menu_page_url(WPCCM_POSITION_PAGE);?>&edit" class="add-new-h2">添加职位</a>
 	</h2>
-	<br>
 	<form action="" method="get">
 		<input type="hidden" name="page" value="<?php echo WPCCM_POSITION_PAGE; ?>" />
 		<?php $wp_list_table->display();?>

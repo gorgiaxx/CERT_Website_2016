@@ -39,7 +39,6 @@ require_once 'content.php';
 	部门列表
 	<a href="<?php menu_page_url(WPCCM_DEPART_PAGE);?>&edit" class="add-new-h2">添加部门</a>
 	</h2>
-	<br>
 	<form action="" method="get">
 		<input type="hidden" name="page" value="<?php echo WPCCM_DEPART_PAGE; ?>" />
 		<?php $wp_list_table->display();?>

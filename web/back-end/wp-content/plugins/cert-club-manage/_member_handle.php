@@ -4,10 +4,19 @@
  *
  */
 global $wpdb;
+
+add_action('admin_print_scripts', 'custom_admin_scripts');
+wp_enqueue_media();
+wp_register_script('custom-upload', WPCCM_PLUGIN_URL . '/js/custom_upload.js', array('jquery', 'media-upload', 'thickbox'), "2.0");
+wp_enqueue_script('custom-upload');
+
 function redirect() {
-	$redirect = '<script type="text/javascript">';
+	$redirect = '<script type="text/javascript">
+';
 	$redirect .= 'window.location = "' . menu_page_url(WPCCM_MEMBER_PAGE, false) . '"';
-	$redirect .= '</script>';
+	$redirect .= '
+</script>
+';
 	echo $redirect;
 }
 /*
@@ -113,9 +122,93 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	}
 }
 
-//Load content
-require_once 'content.php';
-?>
+// Export data
+if (isset($_GET['export'])) {
+	//Load content
+	global $network_admin, $form_action;
+	$network_admin = 0;
+	require_once 'content.php';
+	$form_action = admin_url('admin.php?page=wpccm-member-page&noheader=true');
+	$extensions = array('xls' => '.xls', 'xlsx' => '.xlsx');
+	?>
+		<link href="<?php echo WPCCM_PLUGIN_URL; ?>
+		/css/style.css" rel="stylesheet">
+		<link href="<?php echo WPCCM_PLUGIN_URL; ?>
+		/css/modal.css" rel="stylesheet">
+		<script type="text/javascript">
+		function validate_form() {
+		    var ext = jQuery("input[name=ext]:checked").val();
+		    if (typeof(ext) == 'undefined') {
+		      alert ('请选择扩展名');
+		      return false;
+		    }
+		    if (jQuery("input[name=date_begin]:checked").val() == 'undefined') {
+		      alert ('请选择日期范围');
+		      return false;
+		    }
+		    if (jQuery("input[name=date_end]:checked").val() == 'undefined') {
+		      alert ('请选择日期范围');
+		      return false;
+		    }
+		    if (jQuery("input[name=department_id]:checked").val() == 'undefined') {
+		      alert ('请选择部门');
+		      return false;
+		    }
+		    return true;
+		}
+		</script>
+		<div class="wrap">
+		<?php echo $content['header']; ?>
+		<h3>导出成员数据</h3>
+		<div class="postbox">
+			<div class="inside">
+				<form name="export" action="<?php echo $form_action; ?>" method="post" onsubmit="return validate_form();">
+					<table class="form-table">
+						<tr valign="top">
+							<th scope="row">
+								<label>选择部门</label>
+							</th>
+							<td>
+								<select name="department_id" id="msg_type">
+									<option value="">请选择部门</option>
+									<?php foreach ($department as $val): ?>
+									<?php $selected = ($val->id == @$member->department_id) ? 'selected' : '';?>
+									<option value="<?php echo $val->id; ?>"<?php echo $selected; ?>>
+										<?php echo $val->department_name; ?>
+									</option>
+									<?php endforeach;?>
+								</select>
+							</td>
+						</tr><tr valign="top">
+							<th scope="row">
+								<label>选择入社时间</label>
+							</th>
+							<td>
+								<input type="date" name="date_begin"> 至 <input type="date" name="date_end" value="<?php echo date('Y-m-d'); ?>">
+							</td>
+						</tr><tr valign="top">
+							<th scope="row">
+								<label>选择扩展名</label>
+							</th>
+							<td>
+								<kbd>
+									<i><input type="radio" class="ext" name="ext" id="xls" value="xls"></i><small>.xls</small>
+									<i><input type="radio" class="ext" name="ext" id="xlsx" value="xlsx"></i><small>.xlsx</small>
+								</kbd>
+							</td>
+						</tr>
+						<?php wp_nonce_field('e2e_export_data');?>
+					</table>
+					<input type="submit" class="button-primary" name="Submit" value="提交" />
+				</form>
+			</div>
+		</div>
+		</div>
+<?php
+} else {
+	//Load content
+	require_once 'content.php';
+	?>
 <link href="<?php echo WPCCM_PLUGIN_URL; ?>
 /css/style.css" rel="stylesheet">
 <link href="<?php echo WPCCM_PLUGIN_URL; ?>
@@ -124,12 +217,20 @@ require_once 'content.php';
 <?php echo $content['header']; ?>
 <?php echo $content['tips_content']; ?>
 <hr>
-<h2><?php if (empty($_GET['edit'])) echo "添加成员"; else echo "编辑成员"; ?></h2>
+<h2>
+	<?php if (empty($_GET['edit'])) {
+		echo "添加成员";
+	} else {
+		echo "编辑成员";
+	}
+	?></h2>
 <br>
 <?php if (isset($errors) && is_wp_error($errors)): ?>
 <div class="error">
 	<p>
-		<?php echo implode("</p>\n<p>", $errors->get_error_messages()); ?></p>
+		<?php echo implode("</p>
+		\n
+		<p>", $errors->get_error_messages()); ?></p>
 	</div>
 	<?php endif;?>
 	<div class="postbox">
@@ -188,7 +289,8 @@ require_once 'content.php';
 								<?php foreach ($department as $val): ?>
 								<?php $selected = ($val->id == @$member->department_id) ? 'selected' : '';?>
 								<option value="<?php echo $val->id; ?>"<?php echo $selected; ?>>
-									<?php echo $val->department_name; ?></option>
+									<?php echo $val->department_name; ?>
+								</option>
 								<?php endforeach;?></select>
 						</td>
 					</tr>
@@ -202,8 +304,11 @@ require_once 'content.php';
 								<option value="">请选择职位</option>
 								<?php foreach ($position as $val): ?>
 								<?php $selected = ($val->id == @$member->position_id) ? 'selected' : '';?>
-								<option value="<?php echo $val->id; ?>"<?php echo $selected; ?>><?php echo $val->position_name; ?></option>
-								<?php endforeach;?></select>
+								<option value="<?php echo $val->id; ?>"<?php echo $selected; ?>>
+									<?php echo $val->position_name; ?>
+								</option>
+								<?php endforeach;?>
+							</select>
 						</td>
 					</tr>
 					<tr valign="top">
@@ -213,7 +318,7 @@ require_once 'content.php';
 						<td>
 							<label>
 								<input type="checkbox" name="show_depart" <?php echo @$member->show_depart ? 'checked' : ''; ?>
-								/>显示
+									/>显示
 							</label>
 						</td>
 					</tr>
@@ -224,7 +329,7 @@ require_once 'content.php';
 						<td>
 							<label>
 								<input type="checkbox" name="show_famehall" <?php echo @$member->show_famehall ? 'checked' : ''; ?>
-								/>显示
+									/>显示
 							</label>
 						</td>
 					</tr>
@@ -240,23 +345,22 @@ require_once 'content.php';
 								</th>
 								<td>
 									<img id="upload_face" src="<?php echo $member->face_url; ?>" style="width: 80px;height: 80px;" alt="点击上传">
-									<input type="hidden" name="face_url" value="<?php echo $member->face_url; ?>" class="middle-text"/>
-								</td>
+									<input type="hidden" name="face_url" value="<?php echo $member->face_url; ?>" class="middle-text"/></td>
 							</tr>
 							<tr valign="top">
 								<th scope="row">
 									<label>博客链接</label>
 								</th>
 								<td>
-									<input type="text" name="link" value="<?php echo @$member->link; ?>" class="middle-text"/>
-								</td>
+									<input type="text" name="link" value="<?php echo @$member->link; ?>" class="middle-text"/></td>
 							</tr>
 							<tr valign="top">
 								<th scope="row">
 									<label>个人介绍</label>
 								</th>
 								<td>
-									<textarea id="resp_msg_textarea" name="introduction" rows="10" class="large-text"><?php echo @$member->introduction; ?></textarea>
+									<textarea id="resp_msg_textarea" name="introduction" rows="10" class="large-text">
+										<?php echo @$member->introduction; ?></textarea>
 								</td>
 							</tr>
 						</table>
@@ -285,3 +389,4 @@ require_once 'content.php';
 <div id="hide-modal" style="display: none; width:800px; position:absolute;" class="hide-modal-content">
 	<div class="hide-modal-body"></div>
 </div>
+<?php }?>

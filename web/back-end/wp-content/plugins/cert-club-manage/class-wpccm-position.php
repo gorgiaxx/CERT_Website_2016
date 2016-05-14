@@ -25,6 +25,7 @@ class WPCCM_Position {
 
 	private function __construct() {
 		add_action('admin_menu', array($this, 'add_plugin_page'));
+		add_action('admin_print_scripts', 'custom_admin_scripts');
 	}
 
 	/**

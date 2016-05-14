@@ -88,22 +88,6 @@ class WPCCM_Member_Table extends WP_List_Table {
 		return $actions;
 	}
 
-//	public function process_bulk_action() {
-	//
-	//	    if ( 'delete' === $this->current_action() ) {
-	//	    	if(isset($_GET['tpl'])){
-	//		        foreach($_GET['tpl'] as $tpl){
-	//		        	foreach($this->rawData as $key=>$dt){
-	//		        		if($dt['ID']==$tpl){
-	//		        			unset($this->rawData[$key]);
-	//		        		}
-	//		        	}
-	//
-	//		        }
-	//	        }
-	//	    }
-	//	}
-
 	public function column_cb($item) {
 		return sprintf(
 			'<input type="checkbox" name="delete[]" value="%s" />', $item['ID']
@@ -113,8 +97,8 @@ class WPCCM_Member_Table extends WP_List_Table {
 	public function column_face_url($item) {
 		if (!empty($item['face_url'])) {
 			return sprintf(
-			'<img src="%s" style="width:36px;height:36px;"/>',$item['face_url'] 
-		);
+				'<img src="%s" style="width:36px;height:36px;"/>', $item['face_url']
+			);
 		} else {
 			return "";
 		}
