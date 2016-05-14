@@ -60,7 +60,7 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	$depart["brief"] = sanitize_text_field($_POST['brief']);
 	$depart["introduction"] = sanitize_text_field($_POST['introduction']);
 	$depart["background"] = sanitize_text_field($_POST['background']);
-	$depart["flag"] = intval($_POST['flag']);
+	$depart["flag"] = @(bool)($_POST['flag']);
 	$depart["orders"] = intval($_POST['orders']);
 	$depart["create_time"] = date('Y-m-d H:i:s', time());
 
@@ -175,10 +175,8 @@ require_once 'content.php';
 							<label>是否启用部门</label>
 						</th>
 						<td>
-							<label>
-								<input type="checkbox" name="flag" <?php echo @$depart->flag ? 'checked' : ''; ?>
-								/>启用
-							</label>
+							<label>启用</label>
+							<input type="checkbox" name="flag" <?php echo @$depart->flag ? 'checked' : ''; ?>/>
 						</td>
 					</tr>
 				</table>

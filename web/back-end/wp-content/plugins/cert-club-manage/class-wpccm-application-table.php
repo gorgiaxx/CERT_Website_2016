@@ -117,10 +117,14 @@ class WPCCM_Application_Table extends WP_List_Table {
 
 	public function column_action($item) {
 		$string = '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&delete=%s">删除</a><br />';
-		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&pass=%s">通过面试</a>&nbsp;&nbsp;';
-		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&check=%s">通过考核</a><br />';
-		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&unpass=%s">取消面试</a>&nbsp;&nbsp;';
-		$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&uncheck=%s">取消考核</a>';
+		if ($item['pass'] == 0) {
+			$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&pass=%s">通过面试</a>';
+		} elseif ($item['check'] == 1) {
+			$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&uncheck=%s">取消考核</a>';
+		} elseif ($item['pass'] == 1 && $item['check'] == 0) {
+			$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&check=%s">通过考核</a>&nbsp;&nbsp;';
+			$string .= '<a href="' . menu_page_url(WPCCM_APPLICATION_PAGE, false) . '&unpass=%s">取消面试</a>';
+		}
 		return sprintf($string, $item['ID'],$item['ID'],$item['ID'],$item['ID'],$item['ID']);
 	}
 
