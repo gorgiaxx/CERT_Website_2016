@@ -76,8 +76,6 @@ function safe_redirect() {
 //add custom upload jquery support.
 function custom_admin_scripts() {
 	wp_enqueue_script('jquery');
-	wp_register_script('modal', WPCCM_PLUGIN_URL . '/js/modal.js', array(), "2.0");
-	wp_enqueue_script('modal');
 }
 // Add settings link on plugin page
 function wpccm_plugin_settings_link($links) {

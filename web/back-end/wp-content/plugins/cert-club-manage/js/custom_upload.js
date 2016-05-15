@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-	
+
 	$('#upload_face').click(function() {
 
 		wp.media.editor.add('custom_upload');
@@ -8,15 +8,8 @@ jQuery(document).ready(function($) {
 		var send_insert_bkp = wp.media.editor.insert;
 		
 		var button = $(this);
-		upload_ID =  jQuery("input[name='face_url']");
+		upload_ID =  jQuery("input[name='upload_face']");
 		
-		options = {
-			frame:    'post',
-			state:    'insert',
-			title:    '添加头像',
-			multiple: false
-		};
-
 		wp.media.editor.send.attachment = function(props, attachment) {
 
 			upload_ID.val(attachment['sizes'][props['size']]['url']);
@@ -29,15 +22,16 @@ jQuery(document).ready(function($) {
 			wp.media.editor.insert = send_insert_bkp;
 		}
 
-		wp.media.editor.open('custom_upload',options);
+		wp.media.editor.open('custom_upload');
 
-		wp.media.editor.get('custom_upload',options).on('escape', function(e){
+		wp.media.editor.get('custom_upload').on('escape', function(e){
 			wp.media.editor.send.attachment = send_attachment_bkp;
 			wp.media.editor.insert = send_insert_bkp;
 		});
 		
 		return false;
 	});
+
 	$('#upload_background').click(function() {
 
 		wp.media.editor.add('custom_upload');
@@ -100,5 +94,4 @@ jQuery(document).ready(function($) {
 		
 		return false;
 	});
-	
 });

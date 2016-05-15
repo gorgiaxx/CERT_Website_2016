@@ -9,12 +9,6 @@ add_action('admin_print_scripts', 'custom_admin_scripts');
 wp_enqueue_media();
 wp_register_script('custom-upload', WPCCM_PLUGIN_URL . '/js/custom_upload.js', array('jquery', 'media-upload', 'thickbox'), "2.0");
 wp_enqueue_script('custom-upload');
-add_action( 'init', 'wpse4378_add_new_image_size' );
-function wpse4378_add_new_image_size() {
-    add_image_size( 'wp_face', 240, 240, true);
-}
-
-
 
 
 function redirect() {
@@ -77,55 +71,52 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	}
 	if (empty($_POST['join_time'])) {
 		$errors->add("join_time", "请输入加入日期！");
-	}
-	$member = array();
-	$member["student_id"] = sanitize_text_field($_POST['student_id']);
-	$member["username"] = sanitize_text_field($_POST['username']);
-	$member["phone_number"] = sanitize_text_field($_POST['phone_number']);
-	$member["classname"] = sanitize_text_field($_POST['classname']);
-	$member["department_id"] = intval($_POST['department_id']);
-	$member["position_id"] = intval($_POST['position_id']);
-	$member["join_time"] = sanitize_text_field($_POST['join_time']);
-	$member["face_url"] = @sanitize_text_field($_POST['face_url']);
-	$member["introduction"] = @sanitize_text_field($_POST['introduction']);
-	$member["link"] = @sanitize_text_field($_POST['link']);
-	$member["show_depart"] = @(bool) $_POST['show_depart'];
-	$member["show_famehall"] = @(bool) $_POST['show_famehall'];
-	$member["create_time"] = date('Y-m-d H:i:s', time());
+	} 
+	if (empty($errors->errors)) {
+		$member = array();
+		$member["student_id"] = sanitize_text_field($_POST['student_id']);
+		$member["username"] = sanitize_text_field($_POST['username']);
+		$member["phone_number"] = sanitize_text_field($_POST['phone_number']);
+		$member["classname"] = sanitize_text_field($_POST['classname']);
+		$member["department_id"] = intval($_POST['department_id']);
+		$member["position_id"] = intval($_POST['position_id']);
+		$member["join_time"] = sanitize_text_field($_POST['join_time']);
+		$member["face_url"] = @sanitize_text_field($_POST['face_url']);
+		$member["introduction"] = @sanitize_text_field($_POST['introduction']);
+		$member["link"] = @sanitize_text_field($_POST['link']);
+		$member["show_depart"] = @(bool) $_POST['show_depart'];
+		$member["show_famehall"] = @(bool) $_POST['show_famehall'];
+		$member["create_time"] = date('Y-m-d H:i:s', time());
 
-	if ($current_id == '') {
-		$wpdb->insert(
-			'wp_member',
-			$member,
-			array(
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%d',
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%d',
-				'%d',
-				'%s',
-			)
-		);
-		$current_id = $wpdb->insert_id;
-	} else {
-		$wpdb->update(
-			'wp_member',
-			$member,
-			array('ID' => $current_id)
-		);
-	}
-
-	if (isset($_POST['submit-save-exit'])) {
-		if (!empty($errors)) {
-			redirect();
+		if ($current_id == '') {
+			$wpdb->insert(
+				'wp_member',
+				$member,
+				array(
+					'%s',
+					'%s',
+					'%s',
+					'%s',
+					'%s',
+					'%d',
+					'%s',
+					'%s',
+					'%s',
+					'%s',
+					'%d',
+					'%d',
+					'%s',
+				)
+			);
+			$current_id = $wpdb->insert_id;
+		} else {
+			$wpdb->update(
+				'wp_member',
+				$member,
+				array('ID' => $current_id)
+			);
 		}
+		redirect();
 	}
 }
 
@@ -372,7 +363,6 @@ if (isset($_GET['export'])) {
 						</table>
 					</div>
 				</div>
-
 				<hr>
 				<div class="func-submit">
 					<?php submit_button('保存并返回', 'primary', 'submit-save-exit', false);?>

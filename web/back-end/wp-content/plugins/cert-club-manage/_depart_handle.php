@@ -54,42 +54,42 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	if (empty($_POST['background'])) {
 		$errors->add("background", "请选择部门！");
 	}
-	$depart = array();
-	$depart["department_name"] = sanitize_text_field($_POST['department_name']);
-	$depart["department_name_en"] = sanitize_text_field($_POST['department_name_en']);
-	$depart["brief"] = sanitize_text_field($_POST['brief']);
-	$depart["introduction"] = sanitize_text_field($_POST['introduction']);
-	$depart["background"] = sanitize_text_field($_POST['background']);
-	$depart["flag"] = @(bool)($_POST['flag']);
-	$depart["orders"] = intval($_POST['orders']);
-	$depart["create_time"] = date('Y-m-d H:i:s', time());
-
-	if ($current_id == '') {
-		$wpdb->insert(
-			'wp_department',
-			$depart,
-			array(
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%d',
-				'%d',
-				'%s',
-			)
-		);
-		$current_id = $wpdb->insert_id;
-	} else {
-		$wpdb->update(
-			'wp_department',
-			$depart,
-			array('ID' => $current_id)
-		);
-	}
 
 	if (isset($_POST['submit-save-exit'])) {
-		if (!empty($errors)) {
+		$depart = array();
+		$depart["department_name"] = sanitize_text_field($_POST['department_name']);
+		$depart["department_name_en"] = sanitize_text_field($_POST['department_name_en']);
+		$depart["brief"] = sanitize_text_field($_POST['brief']);
+		$depart["introduction"] = sanitize_text_field($_POST['introduction']);
+		$depart["background"] = sanitize_text_field($_POST['background']);
+		$depart["flag"] = @(bool)($_POST['flag']);
+		$depart["orders"] = intval($_POST['orders']);
+		$depart["create_time"] = date('Y-m-d H:i:s', time());
+
+		if ($current_id == '') {
+			$wpdb->insert(
+				'wp_department',
+				$depart,
+				array(
+					'%s',
+					'%s',
+					'%s',
+					'%s',
+					'%s',
+					'%d',
+					'%d',
+					'%s',
+				)
+			);
+			$current_id = $wpdb->insert_id;
+		} else {
+			$wpdb->update(
+				'wp_department',
+				$depart,
+				array('ID' => $current_id)
+			);
+		}
+		if (empty($errors->errors)) {
 			redirect();
 		}
 	}

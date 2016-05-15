@@ -51,36 +51,36 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	if (empty($_POST['weight'])) {
 		$errors->add("weight", "请输入权重！");
 	}
-	$product = array();
-	$product["product_name"] = sanitize_text_field($_POST['product_name']);
-	$product["product_name_en"] = sanitize_text_field($_POST['product_name_en']);
-	$product["thumb_img"] = sanitize_text_field($_POST['thumb_img']);
-	$product["weight"] = intval($_POST['weight']);
-	$product["create_time"] = date('Y-m-d H:i:s', time());
-
-	if ($current_id == '') {
-		$wpdb->insert(
-			'wp_product',
-			$product,
-			array(
-				'%s',
-				'%s',
-				'%s',
-				'%d',
-				'%s',
-			)
-		);
-		$current_id = $wpdb->insert_id;
-	} else {
-		$wpdb->update(
-			'wp_product',
-			$product,
-			array('ID' => $current_id)
-		);
-	}
 
 	if (isset($_POST['submit-save-exit'])) {
-		if (!empty($errors)) {
+		if (empty($errors->errors)) {
+			$product = array();
+			$product["product_name"] = sanitize_text_field($_POST['product_name']);
+			$product["product_name_en"] = sanitize_text_field($_POST['product_name_en']);
+			$product["thumb_img"] = sanitize_text_field($_POST['thumb_img']);
+			$product["weight"] = intval($_POST['weight']);
+			$product["create_time"] = date('Y-m-d H:i:s', time());
+
+			if ($current_id == '') {
+				$wpdb->insert(
+					'wp_product',
+					$product,
+					array(
+						'%s',
+						'%s',
+						'%s',
+						'%d',
+						'%s',
+					)
+				);
+				$current_id = $wpdb->insert_id;
+			} else {
+				$wpdb->update(
+					'wp_product',
+					$product,
+					array('ID' => $current_id)
+				);
+			}
 			redirect();
 		}
 	}

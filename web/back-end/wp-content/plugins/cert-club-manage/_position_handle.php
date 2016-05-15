@@ -48,34 +48,34 @@ if (isset($_POST['submit-save-exit']) || isset($_POST['submit-save'])) {
 	if (empty($_POST['weight'])) {
 		$errors->add("weight", "请输入权重！");
 	}
-	$position = array();
-	$position["position_name"] = sanitize_text_field($_POST['position_name']);
-	$position["position_name_en"] = sanitize_text_field($_POST['position_name_en']);
-	$position["weight"] = intval($_POST['weight']);
-	$position["create_time"] = date('Y-m-d H:i:s', time());
-
-	if ($current_id == '') {
-		$wpdb->insert(
-			'wp_position',
-			$position,
-			array(
-				'%s',
-				'%s',
-				'%d',
-				'%s',
-			)
-		);
-		$current_id = $wpdb->insert_id;
-	} else {
-		$wpdb->update(
-			'wp_position',
-			$position,
-			array('ID' => $current_id)
-		);
-	}
 
 	if (isset($_POST['submit-save-exit'])) {
-		if (!empty($errors)) {
+		$position = array();
+		$position["position_name"] = sanitize_text_field($_POST['position_name']);
+		$position["position_name_en"] = sanitize_text_field($_POST['position_name_en']);
+		$position["weight"] = intval($_POST['weight']);
+		$position["create_time"] = date('Y-m-d H:i:s', time());
+
+		if ($current_id == '') {
+			$wpdb->insert(
+				'wp_position',
+				$position,
+				array(
+					'%s',
+					'%s',
+					'%d',
+					'%s',
+				)
+			);
+			$current_id = $wpdb->insert_id;
+		} else {
+			$wpdb->update(
+				'wp_position',
+				$position,
+				array('ID' => $current_id)
+			);
+		}
+		if (empty($errors->errors)) {
 			redirect();
 		}
 	}
