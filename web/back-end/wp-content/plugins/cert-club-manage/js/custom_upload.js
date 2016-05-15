@@ -10,6 +10,13 @@ jQuery(document).ready(function($) {
 		var button = $(this);
 		upload_ID =  jQuery("input[name='face_url']");
 		
+		options = {
+			frame:    'post',
+			state:    'insert',
+			title:    '添加头像',
+			multiple: false
+		};
+
 		wp.media.editor.send.attachment = function(props, attachment) {
 
 			upload_ID.val(attachment['sizes'][props['size']]['url']);
@@ -22,9 +29,9 @@ jQuery(document).ready(function($) {
 			wp.media.editor.insert = send_insert_bkp;
 		}
 
-		wp.media.editor.open('custom_upload');
+		wp.media.editor.open('custom_upload',options);
 
-		wp.media.editor.get('custom_upload').on('escape', function(e){
+		wp.media.editor.get('custom_upload',options).on('escape', function(e){
 			wp.media.editor.send.attachment = send_attachment_bkp;
 			wp.media.editor.insert = send_insert_bkp;
 		});

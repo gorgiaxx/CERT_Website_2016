@@ -36,6 +36,8 @@ class WPCCM_Member_Table extends WP_List_Table {
 		case 'join_time':
 		case 'face_url':
 		case 'introduction':
+		case 'show_depart':
+		case 'show_famehall':
 			return $item[$column_name];
 		default:
 			return print_r($item, true); //Show the whole array for troubleshooting purposes
@@ -91,6 +93,23 @@ class WPCCM_Member_Table extends WP_List_Table {
 	public function column_cb($item) {
 		return sprintf(
 			'<input type="checkbox" name="delete[]" value="%s" />', $item['ID']
+		);
+	}
+
+	public function column_username($item) {
+		$s = $item['username'];
+		if ($item['show_famehall']) {
+			$s .= '<img src="'.WPCCM_PLUGIN_URL.'/img/crown_16px.png" alt="名人堂">';
+		}
+		if ($item['show_depart']) {
+			$s .= '<img src="'.WPCCM_PLUGIN_URL.'/img/knight_16px.png" alt="部门核心成员">';
+		}
+		return $s;
+	}
+
+	public function column_introduction($item) {
+		return sprintf(
+			'<p style="overflow: hidden; white-space: nowrap;  text-overflow: ellipsis;">%s</p>', $item['introduction']
 		);
 	}
 

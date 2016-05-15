@@ -26,6 +26,8 @@ foreach ($raw as $d) {
 		'join_time' => $d->join_time,
 		'face_url' => $d->face_url,
 		'introduction' => $d->introduction,
+		'show_depart' => $d->show_depart,
+		'show_famehall' => $d->show_famehall,
 		'link' => $d->link,
 	);
 }

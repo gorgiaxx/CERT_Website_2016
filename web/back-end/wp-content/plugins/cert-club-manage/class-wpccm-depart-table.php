@@ -84,6 +84,18 @@ class WPCCM_Depart_Table extends WP_List_Table {
 		);
 	}
 
+	public function column_brief($item) {
+		return sprintf(
+			'<p style="overflow: hidden; white-space: nowrap;  text-overflow: ellipsis;">%s</p>', $item['brief']
+		);
+	}
+	
+	public function column_introduction($item) {
+		return sprintf(
+			'<p style="overflow: hidden; white-space: nowrap;  text-overflow: ellipsis;">%s</p>', $item['introduction']
+		);
+	}
+
 	public function column_flag($item) {
 		if ($item['flag'] == 0) {
 			return "停用";

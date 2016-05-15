@@ -158,7 +158,7 @@ require_once 'content.php';
 							<label>主题背景</label>
 						</th>
 						<td>
-							<img id="upload_background" src="<?php echo @$depart->background; ?>" style="width: 320px;height: 240px;" alt="点击上传">*
+							<img id="upload_background" src="<?php echo @$depart->background; ?>" style="width: 320px;height: auto;" alt="点击上传">*
 							<input type="hidden" name="background" value="<?php echo @$depart->background; ?>"/>
 						</td>
 					</tr>

@@ -9,6 +9,13 @@ add_action('admin_print_scripts', 'custom_admin_scripts');
 wp_enqueue_media();
 wp_register_script('custom-upload', WPCCM_PLUGIN_URL . '/js/custom_upload.js', array('jquery', 'media-upload', 'thickbox'), "2.0");
 wp_enqueue_script('custom-upload');
+add_action( 'init', 'wpse4378_add_new_image_size' );
+function wpse4378_add_new_image_size() {
+    add_image_size( 'wp_face', 240, 240, true);
+}
+
+
+
 
 function redirect() {
 	$redirect = '<script type="text/javascript">
@@ -344,8 +351,8 @@ if (isset($_GET['export'])) {
 									<label>头像</label>
 								</th>
 								<td>
-									<img id="upload_face" src="<?php echo $member->face_url; ?>" style="width: 80px;height: 80px;" alt="点击上传">
-									<input type="hidden" name="face_url" value="<?php echo $member->face_url; ?>" class="middle-text"/></td>
+									<img id="upload_face" src="<?php echo @$member->face_url?$member->face_url:WPCCM_PLUGIN_URL.'/img/default.png'; ?>" style="width: 80px;height: 80px;" alt="点击上传">
+									<input type="hidden" name="face_url" value="<?php echo @$member->face_url?$member->face_url:WPCCM_PLUGIN_URL.'/img/default.png'; ?>" class="middle-text"/></td>
 							</tr>
 							<tr valign="top">
 								<th scope="row">
@@ -359,8 +366,7 @@ if (isset($_GET['export'])) {
 									<label>个人介绍</label>
 								</th>
 								<td>
-									<textarea id="resp_msg_textarea" name="introduction" rows="10" class="large-text">
-										<?php echo @$member->introduction; ?></textarea>
+									<textarea id="resp_msg_textarea" name="introduction" rows="10" class="large-text"><?php echo @$member->introduction; ?></textarea>
 								</td>
 							</tr>
 						</table>
@@ -381,6 +387,7 @@ if (isset($_GET['export'])) {
 					<a href="<?php echo menu_page_url(WPCCM_MEMBER_PAGE, false) . '&delete=' . $current_id; ?>">删除</a>
 				</div>
 				<?php endif;?></form>
+				<div id="custom_upload"></div>
 		</div>
 	</div>
 </div>
