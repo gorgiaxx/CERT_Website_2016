@@ -11,16 +11,16 @@ function redirect() {
 	echo $redirect;
 }
 /*
- * Delete departs
+ * Delete applications
  */
 if (isset($_GET['delete'])) { 
 	if (is_array($_GET['delete'])) {
 		$current_id = implode(",", $_GET['delete']);
 	} else {
-		$current_id = $_GET['delete'];
+		$current_id = intval($_GET['delete']);
 	}
 	if ($current_id != '') {
-		$s = $wpdb->delete("wp_application", array('ID' => $current_id), array('%d'));
+		$s = $wpdb->query("DELETE FROM wp_application WHERE id in (" . $current_id . ")");
 	}
 	redirect();
 } else {

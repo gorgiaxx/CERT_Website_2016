@@ -20,7 +20,7 @@ if (isset($_GET['delete'])) {
 		$current_id = $_GET['delete'];
 	}
 	if ($current_id != '') {
-		$s = $wpdb->delete("wp_product", array('ID' => $current_id), array('%d'));
+		$s = $wpdb->query("DELETE FROM wp_product WHERE id in (" . $current_id . ")");
 	}
 	redirect();
 } else {
